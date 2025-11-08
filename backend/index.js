@@ -13,13 +13,18 @@ const localstrategy = require('passport-local');
 const {UserModel} = require('./models/UserModel');
 
 
-const port = process.env.port || 3002;
+const port = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL ;
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:3000", "http://localhost:3001"],
+  credentials: true,
+}));
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false })); // 👈 ADD THIS LINE
 
 const sessionOptions = {
     secret: "99665544332211",
@@ -35,7 +40,10 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new localstrategy(UserModel.authenticate()));
+passport.use(new localstrategy(
+  { usernameField: 'email' },
+  UserModel.authenticate()
+));
 passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
 
@@ -182,27 +190,39 @@ app.get('/allOrders', async (req, res) => {
 // 🧠 Signup Route
 app.post("/signup", async (req, res) => {
   try {
-    const { email, username, password } = req.body;
+    const { username, email, password } = req.body;
 
-    const existingUser = await UserModel.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: "User already exists!" });
+    if (!username || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
     }
 
-    const newUser = new UserModel({ email, username });
-    await UserModel.register(newUser, password); // provided by passport-local-mongoose
+    const newUser = new UserModel({ username, email });
+    await UserModel.register(newUser, password); // passport-local-mongoose helper
 
-    res.status(201).json({ message: "Signup successful!" });
+    console.log("✅ Signup successful for:", username);
+    res.json({ message: "Signup successful!" });
   } catch (err) {
-    console.error("Signup error:", err);
-    res.status(500).json({ message: "Server error during signup" });
+    console.error("❌ Error in /signup route:", err);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
+
+
 // 🔐 Login Route
-app.post("/login", passport.authenticate("local"), (req, res) => {
-  res.json({ message: "Login successful!" });
+app.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) return res.status(500).json({ message: "Internal Server Error" });
+    if (!user) return res.status(400).json({ message: "Invalid email or password" });
+
+    req.logIn(user, (err) => {
+      if (err) return res.status(500).json({ message: "Login failed!" });
+      console.log(":white_check_mark: Login successful for:", user.email);
+      return res.json({ message: "Login successful!" });
+    });
+  })(req, res, next);
 });
+
 
 // --- Server Start ---
 
