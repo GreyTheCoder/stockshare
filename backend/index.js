@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Session handling for authentication
 const sessionOptions = {
-    secret: "99665544332211",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
