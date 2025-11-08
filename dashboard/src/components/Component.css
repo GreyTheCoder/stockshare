@@ -1,0 +1,465 @@
+/* Minimal styling: only font sizes, spacing and small visual improvements.
+   This keeps your original markup & behavior intact.
+*/
+
+/* Container */
+.watchlist-container {
+  padding: 10px;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+/* Search */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.search {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #e0e6eb;
+  font-size: 13px; /* slightly smaller */
+}
+
+.counts {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* List */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+/* Item */
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 6px;
+  border-radius: 6px;
+}
+
+/* Stock name */
+.item .up,
+.item .down {
+  margin: 0;
+  font-size: 14px; /* main font-size adjusted */
+  font-weight: 600;
+}
+
+/* percent and icons */
+.itemInfo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.percent {
+  font-size: 12px; /* smaller badge */
+  font-weight: 600;
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.price {
+  font-size: 13px; /* small price text */
+  font-weight: 700;
+  margin-left: 6px;
+}
+
+/* Actions (appear on hover) */
+.actions {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.actions .buy,
+.actions .sell,
+.actions .action {
+  font-size: 12px; /* smaller button text */
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+/* icons */
+.icon {
+  font-size: 18px;
+}
+
+/* Doughnut chart wrapper — keep size small */
+.watchlist-container > .chart {
+  max-width: 180px;
+  margin-top: 10px;
+}
+
+
+
+
+/* summary.js */
+
+/* Minimal styling for Summary component
+   - Only adjusts font sizes, spacing and soft colors
+   - Keeps your original layout and text intact
+*/
+
+/* Container pieces */
+.username {
+  margin-bottom: 10px;
+}
+
+.username h1 {
+  margin: 0;          
+  font-weight : 600;
+  color: #34414a;             
+}
+
+/* divider */
+.divider {
+  border: none;
+  height: 1px;
+  background: rgba(50, 65, 74, 0.06);
+  margin: 8px 0 12px 0;
+}
+
+/* each section wrapper */
+.section {
+  margin-bottom: 14px;
+  padding: 8px 0;
+}
+
+/* section title */
+.section > span > p {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  color: #5b6a73;
+  font-weight: 600;
+}
+
+/* data block */
+.data {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: transparent;
+  padding: 6px 0;
+}
+
+/* left column */
+.data .first {
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.data .first h3 {
+  margin: 0;
+  font-size: 20px;       /* slightly reduced */
+  font-weight: 700;
+  color: #0f1724;
+}
+
+.data .first p {
+  margin: 0;
+  font-size: 12.5px;
+  color: #647380;
+}
+
+/* separator inside data */
+.data hr {
+  width: 1px;
+  height: 44px;
+  border: none;
+  background: rgba(15, 23, 36, 0.06);
+  margin: 0 8px;
+}
+
+/* right column */
+.data .second {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #52616b;
+  font-size: 13px;
+}
+
+.data .second p {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.data .second span {
+  font-weight: 700;
+  color: #0f1724;
+}
+
+/* profit styling */
+.profit {
+  color: #134e4a; /* greenish tone */
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+  font-size: 18px; /* slightly smaller than huge */
+}
+
+.profit small {
+  font-size: 12px;
+  color: #0f5132;
+  font-weight: 600;
+}
+
+/* responsive tweaks */
+@media (max-width: 480px) {
+  .data {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .data hr {
+    display: none;
+  }
+  .data .first h3 {
+    font-size: 18px;
+  }
+}
+
+
+
+/* Holdings.css
+   Typography + table layout tuned to match the screenshot:
+   - wider table, larger row spacing
+   - muted header, thin dividers
+   - left-aligned instrument column, bold instrument text
+   - numeric columns right aligned, heavier weight
+   - profit/loss coloring with subtle percentages
+   - responsive tweaks
+*/
+
+.title {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #444;
+  margin: 18px 0;
+}
+
+/* Table container */
+.order-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Table layout */
+.order-table table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-family: inherit;
+}
+
+/* Header */
+.order-table thead th {
+  text-align: left;
+  padding: 18px 12px;
+  font-size: 0.92rem;
+  font-weight: 400;
+  color: #9aa3a8;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  vertical-align: middle;
+}
+
+/* Make header cells spaced similarly to screenshot */
+.order-table thead th:nth-child(1) { width: 22%; } /* Instrument */
+.order-table thead th:nth-child(2) { width: 8%; }  /* Qty */
+.order-table thead th:nth-child(3) { width: 12%; } /* Avg */
+.order-table thead th:nth-child(4) { width: 10%; } /* LTP */
+.order-table thead th:nth-child(5) { width: 12%; } /* Cur val */
+.order-table thead th:nth-child(6) { width: 8%; }  /* P&L */
+.order-table thead th:nth-child(7) { width: 8%; }  /* Net chg */
+.order-table thead th:nth-child(8) { width: 8%; }  /* Day chg */
+
+/* Body cells */
+.order-table tbody td {
+  padding: 16px 12px;
+  vertical-align: middle;
+  font-size: 0.95rem;
+  color: #333;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Instrument column left aligned and bolder */
+.order-table tbody td:first-child {
+  text-align: left;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #222;
+}
+
+/* Numeric columns right aligned for readability */
+.order-table tbody td:nth-child(n+2) {
+  text-align: right;
+  font-weight: 600;
+  color: #333;
+}
+
+/* P&L and change colors */
+.order-table td.profit {
+  color: #16a34a; /* green */
+}
+.order-table td.loss {
+  color: #ef4444; /* red */
+}
+
+/* Smaller muted percentage text below main number (if you render percentages separately) */
+.small-muted {
+  display: block;
+  font-size: 0.78rem;
+  color: #8c9aa0;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+/* Hover subtle highlight like screenshot */
+.order-table tbody tr:hover td {
+  background: rgba(245, 246, 247, 0.6);
+}
+
+/* Remove default table focus outlines */
+.order-table table:focus {
+  outline: none;
+}
+
+/* Responsive: reduce padding on smaller screens */
+@media (max-width: 900px) {
+  .order-table thead th,
+  .order-table tbody td {
+    padding: 10px 8px;
+    font-size: 0.88rem;
+  }
+  .title {
+    font-size: 1rem;
+  }
+}
+
+/* funds.js */
+/* Minimal, non-invasive styles for Funds component
+   - Only adjusts font sizes, spacing, alignment and button spacing
+   - Keeps your original layout and class names intact
+*/
+
+.funds {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.funds p {
+  margin: 0;
+  font-size: 0.92rem; /* slightly smaller, softer */
+  color: #51606a;
+  font-weight: 400;
+}
+
+/* Buttons already use .btn .btn-green .btn-blue from global CSS.
+   Add small spacing & size tweaks here to keep consistent */
+.funds .btn {
+  padding: 8px 14px;
+  font-size: 0.88rem;
+  border-radius: 6px;
+}
+
+/* Row / columns reuse your global .row .col, small overrides for this panel */
+.row {
+  margin-top: 18px;
+  gap: 18px;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Table card */
+.table {
+  border: 1px solid #e6e9ec;
+  padding: 12px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(31, 41, 55, 0.03);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Data rows inside table */
+.table .data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 6px;
+  gap: 8px;
+}
+
+.table .data p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #5f6f77;
+}
+
+.table .data .imp {
+  font-weight: 700;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+/* subtle hr */
+.table hr {
+  border: none;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
+  margin: 8px 0;
+}
+
+/* Commodity card */
+.commodity {
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #e6e9ec;
+  box-shadow: 0 4px 12px rgba(31, 41, 55, 0.03);
+}
+
+.commodity p {
+  font-size: 0.95rem;
+  color: #5f6f77;
+}
+
+/* Responsive tweaks */
+@media (max-width: 860px) {
+  .row {
+    flex-direction: column;
+  }
+  .funds {
+    justify-content: space-between;
+  }
+  .table {
+    width: 100%;
+  }
+}
