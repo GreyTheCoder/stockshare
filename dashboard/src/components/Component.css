@@ -1,15 +1,13 @@
-/* Minimal styling: only font sizes, spacing and small visual improvements.
-   This keeps your original markup & behavior intact.
-*/
+/* 💠 Minimal font/spacing tweaks */
 
-/* Container */
+/* 📦 Container */
 .watchlist-container {
   padding: 10px;
   background: transparent;
   box-sizing: border-box;
 }
 
-/* Search */
+/* 🔍 Search */
 .search-container {
   display: flex;
   align-items: center;
@@ -22,7 +20,7 @@
   padding: 6px 8px;
   border-radius: 6px;
   border: 1px solid #e0e6eb;
-  font-size: 13px; /* slightly smaller */
+  font-size: 13px;
 }
 
 .counts {
@@ -30,7 +28,7 @@
   color: #6b7280;
 }
 
-/* List */
+/* 📜 List */
 .list {
   list-style: none;
   padding: 0;
@@ -42,7 +40,7 @@
   overflow-y: auto;
 }
 
-/* Item */
+/* 🔹 Item */
 .item {
   display: flex;
   justify-content: space-between;
@@ -51,15 +49,15 @@
   border-radius: 6px;
 }
 
-/* Stock name */
+/* 🏷 Stock name */
 .item .up,
 .item .down {
   margin: 0;
-  font-size: 14px; /* main font-size adjusted */
+  font-size: 14px;
   font-weight: 600;
 }
 
-/* percent and icons */
+/* 📊 percent/icons */
 .itemInfo {
   display: flex;
   align-items: center;
@@ -67,7 +65,7 @@
 }
 
 .percent {
-  font-size: 12px; /* smaller badge */
+  font-size: 12px;
   font-weight: 600;
   padding: 3px 6px;
   border-radius: 5px;
@@ -75,12 +73,12 @@
 }
 
 .price {
-  font-size: 13px; /* small price text */
+  font-size: 13px;
   font-weight: 700;
   margin-left: 6px;
 }
 
-/* Actions (appear on hover) */
+/* 🛠 Actions (hover) */
 .actions {
   display: inline-flex;
   gap: 6px;
@@ -89,44 +87,39 @@
 .actions .buy,
 .actions .sell,
 .actions .action {
-  font-size: 12px; /* smaller button text */
+  font-size: 12px;
   padding: 6px 8px;
   border-radius: 6px;
 }
 
-/* icons */
+/* ⚙ icons */
 .icon {
   font-size: 18px;
 }
 
-/* Doughnut chart wrapper — keep size small */
+/* 🍩 Chart wrap */
 .watchlist-container > .chart {
   max-width: 180px;
   margin-top: 10px;
 }
 
 
+/* 🔹 summary.js */
 
+/* ✨ Minimal summary styles */
 
-/* summary.js */
-
-/* Minimal styling for Summary component
-   - Only adjusts font sizes, spacing and soft colors
-   - Keeps your original layout and text intact
-*/
-
-/* Container pieces */
+/* 👤 Username */
 .username {
   margin-bottom: 10px;
 }
 
 .username h1 {
   margin: 0;          
-  font-weight : 600;
+  font-weight: 600;
   color: #34414a;             
 }
 
-/* divider */
+/* ─ Divider */
 .divider {
   border: none;
   height: 1px;
@@ -134,13 +127,13 @@
   margin: 8px 0 12px 0;
 }
 
-/* each section wrapper */
+/* 📦 Section */
 .section {
   margin-bottom: 14px;
   padding: 8px 0;
 }
 
-/* section title */
+/* 🏷 Section title */
 .section > span > p {
   margin: 0 0 8px 0;
   font-size: 13px;
@@ -148,7 +141,7 @@
   font-weight: 600;
 }
 
-/* data block */
+/* 🧩 Data */
 .data {
   display: flex;
   gap: 12px;
@@ -157,7 +150,7 @@
   padding: 6px 0;
 }
 
-/* left column */
+/* ⬅ Left col */
 .data .first {
   min-width: 120px;
   display: flex;
@@ -167,7 +160,7 @@
 
 .data .first h3 {
   margin: 0;
-  font-size: 20px;       /* slightly reduced */
+  font-size: 20px;
   font-weight: 700;
   color: #0f1724;
 }
@@ -178,7 +171,7 @@
   color: #647380;
 }
 
-/* separator inside data */
+/* │ Divider in data */
 .data hr {
   width: 1px;
   height: 44px;
@@ -187,7 +180,7 @@
   margin: 0 8px;
 }
 
-/* right column */
+/* ➡ Right col */
 .data .second {
   display: flex;
   flex-direction: column;
@@ -208,14 +201,14 @@
   color: #0f1724;
 }
 
-/* profit styling */
+/* 💹 Profit text */
 .profit {
-  color: #134e4a; /* greenish tone */
+  color: #134e4a;
   display: flex;
   align-items: baseline;
   gap: 8px;
   margin: 0;
-  font-size: 18px; /* slightly smaller than huge */
+  font-size: 18px;
 }
 
 .profit small {
@@ -224,7 +217,7 @@
   font-weight: 600;
 }
 
-/* responsive tweaks */
+/* 📱 Responsive */
 @media (max-width: 480px) {
   .data {
     flex-direction: column;
@@ -239,16 +232,9 @@
 }
 
 
+/* 💼 Holdings.css */
 
-/* Holdings.css
-   Typography + table layout tuned to match the screenshot:
-   - wider table, larger row spacing
-   - muted header, thin dividers
-   - left-aligned instrument column, bold instrument text
-   - numeric columns right aligned, heavier weight
-   - profit/loss coloring with subtle percentages
-   - responsive tweaks
-*/
+/* 🧾 Table layout, spacing, font tweaks */
 
 .title {
   font-size: 1.15rem;
@@ -257,13 +243,13 @@
   margin: 18px 0;
 }
 
-/* Table container */
+/* 📋 Table container */
 .order-table {
   width: 100%;
   overflow-x: auto;
 }
 
-/* Table layout */
+/* 🧱 Table layout */
 .order-table table {
   width: 100%;
   border-collapse: collapse;
@@ -271,7 +257,7 @@
   font-family: inherit;
 }
 
-/* Header */
+/* 🧭 Header */
 .order-table thead th {
   text-align: left;
   padding: 18px 12px;
@@ -282,17 +268,17 @@
   vertical-align: middle;
 }
 
-/* Make header cells spaced similarly to screenshot */
-.order-table thead th:nth-child(1) { width: 22%; } /* Instrument */
-.order-table thead th:nth-child(2) { width: 8%; }  /* Qty */
-.order-table thead th:nth-child(3) { width: 12%; } /* Avg */
-.order-table thead th:nth-child(4) { width: 10%; } /* LTP */
-.order-table thead th:nth-child(5) { width: 12%; } /* Cur val */
-.order-table thead th:nth-child(6) { width: 8%; }  /* P&L */
-.order-table thead th:nth-child(7) { width: 8%; }  /* Net chg */
-.order-table thead th:nth-child(8) { width: 8%; }  /* Day chg */
+/* 📏 Col widths */
+.order-table thead th:nth-child(1) { width: 22%; }
+.order-table thead th:nth-child(2) { width: 8%; }
+.order-table thead th:nth-child(3) { width: 12%; }
+.order-table thead th:nth-child(4) { width: 10%; }
+.order-table thead th:nth-child(5) { width: 12%; }
+.order-table thead th:nth-child(6) { width: 8%; }
+.order-table thead th:nth-child(7) { width: 8%; }
+.order-table thead th:nth-child(8) { width: 8%; }
 
-/* Body cells */
+/* 🧾 Body cells */
 .order-table tbody td {
   padding: 16px 12px;
   vertical-align: middle;
@@ -304,7 +290,7 @@
   text-overflow: ellipsis;
 }
 
-/* Instrument column left aligned and bolder */
+/* 🔤 First col (name) */
 .order-table tbody td:first-child {
   text-align: left;
   font-weight: 700;
@@ -313,22 +299,22 @@
   color: #222;
 }
 
-/* Numeric columns right aligned for readability */
+/* 🔢 Numeric cols */
 .order-table tbody td:nth-child(n+2) {
   text-align: right;
   font-weight: 600;
   color: #333;
 }
 
-/* P&L and change colors */
+/* 🟢🔴 P&L */
 .order-table td.profit {
-  color: #16a34a; /* green */
+  color: #16a34a;
 }
 .order-table td.loss {
-  color: #ef4444; /* red */
+  color: #ef4444;
 }
 
-/* Smaller muted percentage text below main number (if you render percentages separately) */
+/* 🔠 Small muted text */
 .small-muted {
   display: block;
   font-size: 0.78rem;
@@ -337,17 +323,17 @@
   margin-top: 6px;
 }
 
-/* Hover subtle highlight like screenshot */
+/* ✨ Hover */
 .order-table tbody tr:hover td {
   background: rgba(245, 246, 247, 0.6);
 }
 
-/* Remove default table focus outlines */
+/* 🚫 Focus outline */
 .order-table table:focus {
   outline: none;
 }
 
-/* Responsive: reduce padding on smaller screens */
+/* 📱 Responsive */
 @media (max-width: 900px) {
   .order-table thead th,
   .order-table tbody td {
@@ -359,11 +345,10 @@
   }
 }
 
-/* funds.js */
-/* Minimal, non-invasive styles for Funds component
-   - Only adjusts font sizes, spacing, alignment and button spacing
-   - Keeps your original layout and class names intact
-*/
+
+/* 💰 funds.js */
+
+/* 🪙 Minimal tweaks for funds panel */
 
 .funds {
   display: flex;
@@ -375,20 +360,19 @@
 
 .funds p {
   margin: 0;
-  font-size: 0.92rem; /* slightly smaller, softer */
+  font-size: 0.92rem;
   color: #51606a;
   font-weight: 400;
 }
 
-/* Buttons already use .btn .btn-green .btn-blue from global CSS.
-   Add small spacing & size tweaks here to keep consistent */
+/* 🔘 Buttons */
 .funds .btn {
   padding: 8px 14px;
   font-size: 0.88rem;
   border-radius: 6px;
 }
 
-/* Row / columns reuse your global .row .col, small overrides for this panel */
+/* 🧩 Row/cols */
 .row {
   margin-top: 18px;
   gap: 18px;
@@ -396,7 +380,7 @@
   align-items: flex-start;
 }
 
-/* Table card */
+/* 📑 Table card */
 .table {
   border: 1px solid #e6e9ec;
   padding: 12px;
@@ -407,7 +391,7 @@
   box-sizing: border-box;
 }
 
-/* Data rows inside table */
+/* 📊 Data rows */
 .table .data {
   display: flex;
   align-items: center;
@@ -428,7 +412,7 @@
   font-size: 0.95rem;
 }
 
-/* subtle hr */
+/* ─ HR */
 .table hr {
   border: none;
   height: 1px;
@@ -436,7 +420,7 @@
   margin: 8px 0;
 }
 
-/* Commodity card */
+/* 🪙 Commodity card */
 .commodity {
   padding: 12px;
   border-radius: 8px;
@@ -451,7 +435,7 @@
   color: #5f6f77;
 }
 
-/* Responsive tweaks */
+/* 📱 Responsive */
 @media (max-width: 860px) {
   .row {
     flex-direction: column;

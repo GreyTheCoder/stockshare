@@ -1,12 +1,6 @@
 import React from "react";
 import "./Component.css";
 
-/*
-  Presentation-only update: original component markup kept exactly the same.
-  Added a lightweight Summary.css that only adjusts font sizes, spacing,
-  and subtle colors to give a cleaner, softer look without changing behavior.
-*/
-
 const Summary = () => {
   return (
     <>

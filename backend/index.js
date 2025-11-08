@@ -12,20 +12,21 @@ const passport = require('passport');
 const localstrategy = require('passport-local');
 const {UserModel} = require('./models/UserModel');
 
-
 const port = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL ;
 
 const app = express();
 
+// Allow requests from dashboard + client
 app.use(cors({
   origin: ["http://localhost:3000", "http://localhost:3001"],
   credentials: true,
 }));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false })); // 👈 ADD THIS LINE
+app.use(bodyParser.urlencoded({ extended: false }));
 
+// Session handling for authentication
 const sessionOptions = {
     secret: "99665544332211",
     resave: false,
@@ -47,28 +48,19 @@ passport.use(new localstrategy(
 passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
 
-// Add this route to return and clear flash messages for current session
-// Place it after app.use(flash()) and before other routes or near other GET routes
-
-
-
-// --- GET Routes ---
-
+// --- GET holdings list ---
 app.get('/allHoldings',async (req,res) =>{
     let allHoldings = await HoldingsModel.find({});
     res.json(allHoldings)
 });
 
+// --- GET positions list ---
 app.get('/allPositions',async (req,res) =>{
     let allPositions = await PositionsModel.find({});
     res.json(allPositions)
 });
 
-// --- POST/BUY Route (Holdings Aggregation) ---
-
-// Replace your existing POST /newOrder handler with this:
-// Replace your current POST /newOrder (flash version) with this original "no-flash" handler:
-
+// --- Buy Order route ---
 app.post('/newOrder', async (req, res) => {
   const instrumentId = req.body.name;
   const buyQuantity = parseFloat(req.body.qty);
@@ -77,7 +69,7 @@ app.post('/newOrder', async (req, res) => {
 
   if (mode === "BUY") {
     try {
-      // 1. Orders collection entry
+      // Save new buy order
       let newOrder = new OrdersModel({
         name: instrumentId,
         qty: buyQuantity,
@@ -87,7 +79,7 @@ app.post('/newOrder', async (req, res) => {
       });
       await newOrder.save();
 
-      // 2. Holdings aggregation/update
+      // Update holdings after buy
       const existingHolding = await HoldingsModel.findOne({ name: instrumentId });
 
       if (existingHolding) {
@@ -117,10 +109,8 @@ app.post('/newOrder', async (req, res) => {
         });
       }
 
-      // Respond directly (no flash)
       return res.status(201).send("Order placed successfully and holdings updated.");
     } catch (error) {
-      console.error("Server error during BUY order processing:", error);
       return res.status(500).send("Server error during BUY order processing.");
     }
   } else {
@@ -128,26 +118,21 @@ app.post('/newOrder', async (req, res) => {
   }
 });
 
-// --- DELETE/SELL Route (Holdings Update via Query Params) ---
-
-// Replace your existing DELETE /sellOrder handler with this:
-
-// Replace your current DELETE /sellOrder (flash version) with this original "no-flash" handler:
-
+// --- Sell Order route ---
 app.delete("/sellOrder", async (req, res) => {
   try {
     const instrumentId = req.query.name;
     const sellQuantity = parseFloat(req.query.qty);
 
-    // Validation
+    // Validate sell request
     if (!instrumentId || isNaN(sellQuantity) || sellQuantity <= 0) {
       return res.status(400).send("Stock name or valid quantity is missing in the request.");
     }
 
-    // Delete matching order entry (if any)
+    // Delete order
     await OrdersModel.findOneAndDelete({ name: instrumentId });
 
-    // Update holdings
+    // Update holdings after sell
     const existingHolding = await HoldingsModel.findOne({ name: instrumentId });
 
     if (!existingHolding) {
@@ -167,27 +152,23 @@ app.delete("/sellOrder", async (req, res) => {
       return res.status(400).send(`Cannot sell ${sellQuantity} qty. Only ${existingHolding.qty} available.`);
     }
 
-    // Respond directly (no flash)
     return res.send("Sell order successful and holdings updated.");
   } catch (error) {
-    console.error("Critical Error during SELL processing:", error.message);
     return res.status(500).send("Internal Server Error: Failed to process sell and update holdings.");
   }
 });
 
-// Add this GET route to your existing index.js (near your other GET routes)
+// --- GET orders list ---
 app.get('/allOrders', async (req, res) => {
   try {
-    const allOrders = await OrdersModel.find({}).sort({ _id: -1 }); // most recent first
+    const allOrders = await OrdersModel.find({}).sort({ _id: -1 });
     res.json(allOrders);
   } catch (err) {
-    console.error("GET /allOrders error:", err);
     res.status(500).json({ error: "Failed to fetch orders" });
   }
 });
 
-// --- AUTH ROUTES ---
-// 🧠 Signup Route
+// --- Signup ---
 app.post("/signup", async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -197,19 +178,15 @@ app.post("/signup", async (req, res) => {
     }
 
     const newUser = new UserModel({ username, email });
-    await UserModel.register(newUser, password); // passport-local-mongoose helper
+    await UserModel.register(newUser, password);
 
-    console.log("✅ Signup successful for:", username);
     res.json({ message: "Signup successful!" });
   } catch (err) {
-    console.error("❌ Error in /signup route:", err);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
-
-
-// 🔐 Login Route
+// --- Login ---
 app.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) return res.status(500).json({ message: "Internal Server Error" });
@@ -217,17 +194,14 @@ app.post("/login", (req, res, next) => {
 
     req.logIn(user, (err) => {
       if (err) return res.status(500).json({ message: "Login failed!" });
-      console.log(":white_check_mark: Login successful for:", user.email);
       return res.json({ message: "Login successful!" });
     });
   })(req, res, next);
 });
 
-
-// --- Server Start ---
-
+// --- Start server and DB connection ---
 app.listen(port, () => {
-    console.log("aap started");
+    console.log("app started");
     mongoose.connect(uri);
     console.log("Db connected");
 });

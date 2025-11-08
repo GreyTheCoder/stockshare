@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'http://localhost:3002', // <- yahan backend ka port likh
+      target: 'http://localhost:3002', 
       changeOrigin: true,
     })
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
+// Auth form: toggles between Login and Signup
 function Signup() {
-  // Step 1: Manage toggle + form state
   const [isLogin, setIsLogin] = useState(true);
   const [form, setForm] = useState({
     username: "",
@@ -9,13 +9,12 @@ function Signup() {
     password: "",
   });
 
-  // ✅ Handle input changes
+  // Update form fields
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    console.log("Updated form:", { ...form, [e.target.name]: e.target.value });
   };
 
-  // ✅ Handle submit
+  // Form submit: send login/signup API request
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -24,42 +23,37 @@ function Signup() {
       : "http://localhost:3002/signup";
 
     try {
-      // ✅ Step 1: Prepare correct body
-       const requestBody = isLogin
-  ? { email: form.email, password: form.password } // Changed here
-  : { username: form.username, email: form.email, password: form.password };
+      const requestBody = isLogin
+        ? { email: form.email, password: form.password }
+        : {
+            username: form.username,
+            email: form.email,
+            password: form.password,
+          };
 
-      console.log("🔹 Sending request to:", url);
-      console.log("🔹 Request body:", requestBody);
-
-      // ✅ Step 2: Send request
       const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestBody),
-        credentials: "include", // 🔑 needed for session cookies
+        credentials: "include",
       });
 
       const data = await res.json();
-      console.log("🔹 Response:", data);
 
-      // ✅ Step 3: Alert + redirect
       if (data.message) alert(data.message);
 
       if (
         (isLogin && data.message === "Login successful!") ||
         (!isLogin && data.message === "Signup successful!")
       ) {
-        console.log("✅ Redirecting to dashboard...");
         window.location.href = "http://localhost:3001";
       }
     } catch (err) {
-      console.error("❌ Error:", err);
       alert("Something went wrong!");
     }
   };
 
-  // ✅ UI
+  // UI: Auth card with conditional fields and toggle
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100 bg-light">
       <div
@@ -71,37 +65,37 @@ function Signup() {
         </h3>
 
         <form onSubmit={handleSubmit}>
-          {/* Username Field (always visible) */}
-          <div className="mb-3">
-  <label className="form-label">Email address</label>
-  <input
-    type="email"
-    name="email"
-    className="form-control"
-    placeholder="Enter email"
-    value={form.email}
-    onChange={handleChange}
-    required
-  />
-</div>
-
-          {/* Email Field (only visible during signup) */}
+          {/* Username if in signup mode */}
           {!isLogin && (
             <div className="mb-3">
-              <label className="form-label">Email address</label>
+              <label className="form-label">Username</label>
               <input
-                type="email"
-                name="email"
+                type="text"
+                name="username"
                 className="form-control"
-                placeholder="Enter email"
-                value={form.email}
+                placeholder="Enter username"
+                value={form.username}
                 onChange={handleChange}
                 required
               />
             </div>
           )}
 
-          {/* Password Field */}
+          {/* Email */}
+          <div className="mb-3">
+            <label className="form-label">Email address</label>
+            <input
+              type="email"
+              name="email"
+              className="form-control"
+              placeholder="Enter email"
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          {/* Password */}
           <div className="mb-3">
             <label className="form-label">Password</label>
             <input
@@ -120,7 +114,7 @@ function Signup() {
           </button>
         </form>
 
-        {/* Toggle between login/signup */}
+        {/* Toggle login/signup modes */}
         <div className="text-center mt-3">
           {isLogin ? (
             <>

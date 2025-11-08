@@ -2,11 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Component.css";
 
-/*
-  Presentation-only: kept component markup and behavior unchanged.
-  Added a small Funds.css with only font-size, spacing and subtle visual tweaks.
-  Drop both files into src/ and ensure the import path is correct.
-*/
 
 const Funds = () => {
   return (
