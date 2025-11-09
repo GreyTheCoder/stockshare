@@ -31,8 +31,11 @@ app.use(cors({
     "https://your-frontend.netlify.app",
     "https://your-dashboard.netlify.app"
   ],
+  methods: ["GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 }));
+
 
 // ✅ Session handling
 app.use(session({
