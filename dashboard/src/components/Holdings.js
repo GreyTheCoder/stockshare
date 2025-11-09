@@ -7,14 +7,14 @@ import "./Component.css";
 
 const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
+useEffect(() => {
+  axios
+    .get(`${process.env.REACT_APP_BACKEND_URL}/allHoldings`)
+    .then((res) => {
+      setAllHoldings(res.data);
+    });
+}, []);
 
-  useEffect(() => {
-    axios
-      .get("https://stockshare-backend.onrender.com/allHoldings")
-      .then((res) => {
-        setAllHoldings(res.data);
-      });
-  }, []);
 
   // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   const labels = allHoldings.map((subArray) => subArray["name"]);

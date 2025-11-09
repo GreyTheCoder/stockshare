@@ -32,7 +32,7 @@ const SellActionWindow = ({ uid }) => {
       )}&qty=${encodeURIComponent(payload.qty)}`;
 
       const response = await axios.delete(
-        `https://stockshare-backend.onrender.com/sellOrder${queryString}`
+        `${process.env.REACT_APP_BACKEND_URL}/sellOrder${queryString}`
       );
 
       console.log(response.data);

@@ -6,25 +6,26 @@ const Orders = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const fetchOrders = async () => {
-    setLoading(true);
-    setError("");
-    try {
-      const res = await axios.get(
-        "https://stockshare-backend.onrender.com/allOrders"
-      );
-      setOrders(res.data || []);
-    } catch (err) {
-      console.error("Failed to fetch orders:", err);
-      setError(
-        err.response && err.response.data
-          ? JSON.stringify(err.response.data)
-          : "Failed to fetch orders"
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
+ const fetchOrders = async () => {
+  setLoading(true);
+  setError("");
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/allOrders`
+    );
+    setOrders(res.data || []);
+  } catch (err) {
+    console.error("Failed to fetch orders:", err);
+    setError(
+      err.response && err.response.data
+        ? JSON.stringify(err.response.data)
+        : "Failed to fetch orders"
+    );
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   useEffect(() => {
     fetchOrders();
