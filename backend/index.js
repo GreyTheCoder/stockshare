@@ -1,17 +1,17 @@
-require('dotenv').config();
+require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const cors = require("cors");
-const session = require('express-session');
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
 
-const { HoldingsModel } = require('./models/HoldingsModel');
-const { PositionsModel } = require('./models/PositionsModel');
-const { OrdersModel } = require('./models/OrdersModel');
-const { UserModel } = require('./models/UserModel');
+const { HoldingsModel } = require("./models/HoldingsModel");
+const { PositionsModel } = require("./models/PositionsModel");
+const { OrdersModel } = require("./models/OrdersModel");
+const { UserModel } = require("./models/UserModel");
 
 const app = express();
 
@@ -26,40 +26,48 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // ✅ CORS: Allow frontend + dashboard deployed URLs
-app.use(cors({
+const corsOptions = {
   origin: [
+    "https://stockshare-dashboard.netlify.app", // ✅ Netlify domain
     "http://localhost:3000", // for local dev
-    "https://stockshare-dashboard.netlify.app" // ✅ your actual deployed dashboard
   ],
-  methods: ["GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+  allowedHeaders: "Origin,X-Requested-With,Content-Type,Accept,Authorization",
   credentials: true,
-}));
+  optionsSuccessStatus: 200,
+};
 
+app.use(cors(corsOptions));
 
+// ✅ Handle preflight requests explicitly
+app.options("*", cors(corsOptions));
 
 // ✅ Session handling
-app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-    httpOnly: true,
-  }
-}));
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+    },
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy({ usernameField: 'email' }, UserModel.authenticate()));
+passport.use(
+  new LocalStrategy({ usernameField: "email" }, UserModel.authenticate())
+);
 passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
 
 // --- Routes ---
 
 // GET all holdings
-app.get('/allHoldings', async (req, res) => {
+app.get("/allHoldings", async (req, res) => {
   try {
     const allHoldings = await HoldingsModel.find({});
     res.json(allHoldings);
@@ -69,7 +77,7 @@ app.get('/allHoldings', async (req, res) => {
 });
 
 // GET all positions
-app.get('/allPositions', async (req, res) => {
+app.get("/allPositions", async (req, res) => {
   try {
     const allPositions = await PositionsModel.find({});
     res.json(allPositions);
@@ -79,15 +87,22 @@ app.get('/allPositions', async (req, res) => {
 });
 
 // Buy order
-app.post('/newOrder', async (req, res) => {
+app.post("/newOrder", async (req, res) => {
   const { name, qty, price, mode } = req.body;
   const buyQuantity = parseFloat(qty);
   const buyPrice = parseFloat(price);
 
-  if (mode !== "BUY") return res.status(400).send("Invalid order mode for this route.");
+  if (mode !== "BUY")
+    return res.status(400).send("Invalid order mode for this route.");
 
   try {
-    const newOrder = new OrdersModel({ name, qty: buyQuantity, avg: buyPrice, price: buyPrice, mode });
+    const newOrder = new OrdersModel({
+      name,
+      qty: buyQuantity,
+      avg: buyPrice,
+      price: buyPrice,
+      mode,
+    });
     await newOrder.save();
 
     const existingHolding = await HoldingsModel.findOne({ name });
@@ -97,9 +112,19 @@ app.post('/newOrder', async (req, res) => {
       const newTotalQty = existingHolding.qty + buyQuantity;
       const newAvg = (oldTotalValue + newTradeValue) / newTotalQty;
 
-      await HoldingsModel.updateOne({ name }, { $set: { qty: newTotalQty, avg: newAvg, price: buyPrice } });
+      await HoldingsModel.updateOne(
+        { name },
+        { $set: { qty: newTotalQty, avg: newAvg, price: buyPrice } }
+      );
     } else {
-      await HoldingsModel.create({ name, qty: buyQuantity, avg: buyPrice, price: buyPrice, net: "N/A", day: "N/A" });
+      await HoldingsModel.create({
+        name,
+        qty: buyQuantity,
+        avg: buyPrice,
+        price: buyPrice,
+        net: "N/A",
+        day: "N/A",
+      });
     }
 
     res.status(201).send("Order placed successfully and holdings updated.");
@@ -121,7 +146,8 @@ app.delete("/sellOrder", async (req, res) => {
     await OrdersModel.findOneAndDelete({ name });
 
     const existingHolding = await HoldingsModel.findOne({ name });
-    if (!existingHolding) return res.status(400).send("Cannot sell: Stock not in holdings.");
+    if (!existingHolding)
+      return res.status(400).send("Cannot sell: Stock not in holdings.");
 
     const newQty = existingHolding.qty - sellQuantity;
 
@@ -130,7 +156,11 @@ app.delete("/sellOrder", async (req, res) => {
     } else if (newQty === 0) {
       await HoldingsModel.deleteOne({ name });
     } else {
-      return res.status(400).send(`Cannot sell ${sellQuantity}. Only ${existingHolding.qty} available.`);
+      return res
+        .status(400)
+        .send(
+          `Cannot sell ${sellQuantity}. Only ${existingHolding.qty} available.`
+        );
     }
 
     res.send("Sell order successful and holdings updated.");
@@ -140,7 +170,7 @@ app.delete("/sellOrder", async (req, res) => {
 });
 
 // GET all orders
-app.get('/allOrders', async (req, res) => {
+app.get("/allOrders", async (req, res) => {
   try {
     const allOrders = await OrdersModel.find({}).sort({ _id: -1 });
     res.json(allOrders);
@@ -153,7 +183,8 @@ app.get('/allOrders', async (req, res) => {
 app.post("/signup", async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    if (!username || !email || !password) return res.status(400).json({ message: "All fields are required" });
+    if (!username || !email || !password)
+      return res.status(400).json({ message: "All fields are required" });
 
     const newUser = new UserModel({ username, email });
     await UserModel.register(newUser, password);
@@ -167,7 +198,8 @@ app.post("/signup", async (req, res) => {
 app.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) return res.status(500).json({ message: "Internal Server Error" });
-    if (!user) return res.status(400).json({ message: "Invalid email or password" });
+    if (!user)
+      return res.status(400).json({ message: "Invalid email or password" });
 
     req.logIn(user, (err) => {
       if (err) return res.status(500).json({ message: "Login failed!" });
@@ -177,7 +209,8 @@ app.post("/login", (req, res, next) => {
 });
 
 // --- Connect to DB first, then start server ---
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose
+  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("DB connected");
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
