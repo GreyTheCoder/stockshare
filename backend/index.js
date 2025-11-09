@@ -28,13 +28,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // ✅ CORS: Allow frontend + dashboard deployed URLs
 app.use(cors({
   origin: [
-    "https://your-frontend.netlify.app",
-    "https://your-dashboard.netlify.app"
+    "http://localhost:3000", // for local dev
+    "https://stockshare-dashboard.netlify.app" // ✅ your actual deployed dashboard
   ],
   methods: ["GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 }));
+
 
 
 // ✅ Session handling
