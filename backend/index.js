@@ -39,8 +39,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// ✅ Handle preflight requests explicitly
-app.options("*", cors(corsOptions));
+//  FIXED: handle preflight for all routes
+app.options(/.*/, cors(corsOptions));
 
 // ✅ Session handling
 app.use(
