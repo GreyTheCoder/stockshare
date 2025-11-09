@@ -18,9 +18,10 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = isLogin
-      ? "http://localhost:3002/login"
-      : "http://localhost:3002/signup";
+     const url = isLogin
+  ? "https://stockshare-backend.onrender.com/login"
+  : "https://stockshare-backend.onrender.com/signup";
+
 
     try {
       const requestBody = isLogin

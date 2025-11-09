@@ -10,11 +10,17 @@ const Orders = () => {
     setLoading(true);
     setError("");
     try {
-      const res = await axios.get("http://localhost:3002/allOrders");
+      const res = await axios.get(
+        "https://stockshare-backend.onrender.com/allOrders"
+      );
       setOrders(res.data || []);
     } catch (err) {
       console.error("Failed to fetch orders:", err);
-      setError(err.response && err.response.data ? JSON.stringify(err.response.data) : "Failed to fetch orders");
+      setError(
+        err.response && err.response.data
+          ? JSON.stringify(err.response.data)
+          : "Failed to fetch orders"
+      );
     } finally {
       setLoading(false);
     }
@@ -39,21 +45,89 @@ const Orders = () => {
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
-                <th style={{ textAlign: "left", padding: 8, borderBottom: "1px solid #ddd" }}>Name</th>
-                <th style={{ textAlign: "right", padding: 8, borderBottom: "1px solid #ddd" }}>Qty</th>
-                <th style={{ textAlign: "right", padding: 8, borderBottom: "1px solid #ddd" }}>Avg</th>
-                <th style={{ textAlign: "right", padding: 8, borderBottom: "1px solid #ddd" }}>Price</th>
-                <th style={{ textAlign: "left", padding: 8, borderBottom: "1px solid #ddd" }}>Mode</th>
+                <th
+                  style={{
+                    textAlign: "left",
+                    padding: 8,
+                    borderBottom: "1px solid #ddd",
+                  }}
+                >
+                  Name
+                </th>
+                <th
+                  style={{
+                    textAlign: "right",
+                    padding: 8,
+                    borderBottom: "1px solid #ddd",
+                  }}
+                >
+                  Qty
+                </th>
+                <th
+                  style={{
+                    textAlign: "right",
+                    padding: 8,
+                    borderBottom: "1px solid #ddd",
+                  }}
+                >
+                  Avg
+                </th>
+                <th
+                  style={{
+                    textAlign: "right",
+                    padding: 8,
+                    borderBottom: "1px solid #ddd",
+                  }}
+                >
+                  Price
+                </th>
+                <th
+                  style={{
+                    textAlign: "left",
+                    padding: 8,
+                    borderBottom: "1px solid #ddd",
+                  }}
+                >
+                  Mode
+                </th>
               </tr>
             </thead>
             <tbody>
               {orders.map((o) => (
                 <tr key={o._id}>
-                  <td style={{ padding: 8, borderBottom: "1px solid #f0f0f0" }}>{o.name}</td>
-                  <td style={{ padding: 8, textAlign: "right", borderBottom: "1px solid #f0f0f0" }}>{o.qty}</td>
-                  <td style={{ padding: 8, textAlign: "right", borderBottom: "1px solid #f0f0f0" }}>{o.avg}</td>
-                  <td style={{ padding: 8, textAlign: "right", borderBottom: "1px solid #f0f0f0" }}>{o.price}</td>
-                  <td style={{ padding: 8, borderBottom: "1px solid #f0f0f0" }}>{o.mode}</td>
+                  <td style={{ padding: 8, borderBottom: "1px solid #f0f0f0" }}>
+                    {o.name}
+                  </td>
+                  <td
+                    style={{
+                      padding: 8,
+                      textAlign: "right",
+                      borderBottom: "1px solid #f0f0f0",
+                    }}
+                  >
+                    {o.qty}
+                  </td>
+                  <td
+                    style={{
+                      padding: 8,
+                      textAlign: "right",
+                      borderBottom: "1px solid #f0f0f0",
+                    }}
+                  >
+                    {o.avg}
+                  </td>
+                  <td
+                    style={{
+                      padding: 8,
+                      textAlign: "right",
+                      borderBottom: "1px solid #f0f0f0",
+                    }}
+                  >
+                    {o.price}
+                  </td>
+                  <td style={{ padding: 8, borderBottom: "1px solid #f0f0f0" }}>
+                    {o.mode}
+                  </td>
                 </tr>
               ))}
             </tbody>
