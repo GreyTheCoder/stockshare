@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // ✅ CORS: Allow frontend + dashboard deployed URLs
 const corsOptions = {
   origin: [
-    "https://stockshare-dashboard.netlify.app", // ✅ Netlify domain
+    "https://stockshare-dashboard.netlify.app", //  Netlify domain
     "http://localhost:3000", // for local dev
   ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
@@ -39,8 +39,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-//  FIXED: handle preflight for all routes
-app.options(/.*/, cors(corsOptions));
+// ✅ Handle preflight requests explicitly
+app.options("*", cors(corsOptions));
 
 // ✅ Session handling
 app.use(

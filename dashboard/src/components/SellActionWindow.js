@@ -1,16 +1,18 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import GeneralContext from "./GeneralContext";
-
 import "./BuyActionWindow.css";
 
 const SellActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
 
-  // Access context value from provider
+  // ✅ Access context value
   const context = useContext(GeneralContext);
   const { closeSellWindow } = context || {};
+
+  // ✅ Use centralized API base
+  const API_BASE = process.env.REACT_APP_BACKEND_URL;
 
   const handleSellClick = async () => {
     try {
@@ -25,30 +27,27 @@ const SellActionWindow = ({ uid }) => {
         price: parseFloat(stockPrice),
       };
 
-      console.log("Payload (Query Data) being sent:", payload);
+      console.log("🟡 Sending Sell Order Payload:", payload);
 
       const queryString = `?name=${encodeURIComponent(
         payload.name
       )}&qty=${encodeURIComponent(payload.qty)}`;
 
-      const response = await axios.delete(
-        `${process.env.REACT_APP_BACKEND_URL}/sellOrder${queryString}`
-      );
+      // ✅ Backend API call using env URL
+      const response = await axios.delete(`${API_BASE}/sellOrder${queryString}`);
 
-      console.log(response.data);
+      console.log("✅ Sell Order Response:", response.data);
       alert("✅ Sell order successful!");
 
       if (typeof closeSellWindow === "function") {
         closeSellWindow();
       } else {
-        console.warn("closeSellWindow is not available on context");
+        console.warn("⚠️ closeSellWindow function not found in context");
       }
     } catch (error) {
-      console.error("Error while selling:", error);
+      console.error("❌ Error while selling:", error);
       const errorMessage =
-        error.response && error.response.data
-          ? error.response.data
-          : "Something went wrong while selling the order!";
+        error.response?.data || "Something went wrong while processing the sell order!";
       alert(`❌ Error: ${errorMessage}`);
     }
   };
