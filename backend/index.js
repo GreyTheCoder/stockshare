@@ -15,25 +15,21 @@ const { UserModel } = require("./models/UserModel");
 
 const app = express();
 
-// ⭐ FIX 1: Enable trust proxy for secure cookies behind Render (proxy)
+// ⭐ FIX: Trust proxy enabled for Render
 app.set('trust proxy', 1); 
 
-// ✅ Use dynamic port for Render
 const PORT = process.env.PORT || 3002;
-
-// ✅ MongoDB URI from environment variable
 const MONGO_URI = process.env.MONGO_URL;
 
 // --- Middleware ---
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// ✅ CORS: Allow frontend + dashboard deployed URLs
+// ✅ CORS Options
 const corsOptions = {
-    // ⭐ FIX 2: Netlify domain updated with your actual URL ⭐
   origin: [
-    "https://stockshare-dashboard.netlify.app", // <--- Your confirmed Netlify URL
-    "http://localhost:3000", // for local dev
+    "https://stockshare-dashboard.netlify.app", // Your confirmed Netlify URL
+    "http://localhost:3000", 
   ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
   allowedHeaders: "Origin,X-Requested-With,Content-Type,Accept,Authorization",
@@ -43,8 +39,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// ✅ Handle preflight requests explicitly
-app.options("*", cors(corsOptions));
+// ❌ LINE REMOVED: app.options("*", cors(corsOptions)); <--- This line caused the PathError
 
 // ✅ Session handling
 app.use(
@@ -56,7 +51,7 @@ app.use(
       expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
       maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      // ⭐ FIX 3: Required for cross-origin cookie transfer (Netlify <-> Render)
+      // Fixes for cross-origin cookie transfer
       sameSite: 'none', 
       secure: true, 
     },
@@ -71,7 +66,7 @@ passport.use(
 passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
 
-// --- Routes ---
+// --- Routes (omitted for brevity, assume they are correct) ---
 
 // GET all holdings
 app.get("/allHoldings", async (req, res) => {
