@@ -9,13 +9,11 @@ const Orders = () => {
   const API_BASE = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
-    // FIX 1: Define fetchOrders INSIDE useEffect to satisfy the dependency array (Fixes Netlify Build)
     const fetchOrders = async () => {
       setLoading(true);
       setError("");
 
       try {
-        // FIX 2: Add withCredentials for cookie transfer (Fixes Data Loading)
         const res = await axios.get(`${API_BASE}/allOrders`, { withCredentials: true });
         setOrders(res.data || []);
       } catch (err) {
@@ -31,7 +29,7 @@ const Orders = () => {
     };
 
     fetchOrders();
-  }, []); // Empty dependency array is correct now
+  }, [API_BASE]); // ⭐ FIX: API_BASE added to dependency array
 
   return (
     <div className="orders-page">
