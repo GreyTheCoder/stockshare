@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import GeneralContext from "./GeneralContext";
@@ -8,12 +8,14 @@ const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
 
+  // ✅ Access context function properly
+  const { closeBuyWindow } = useContext(GeneralContext);
+
   // ✅ Base URL from environment (no trailing slash)
   const API = process.env.REACT_APP_BACKEND_URL;
 
   const handleBuyClick = async () => {
     try {
-      // ✅ Correct API call structure
       const response = await axios.post(
         `${API}/newOrder`,
         {
@@ -23,7 +25,6 @@ const BuyActionWindow = ({ uid }) => {
           mode: "BUY",
         },
         {
-          // ✅ Use only if your backend uses sessions or cookies
           withCredentials: false,
           headers: {
             "Content-Type": "application/json",
@@ -32,9 +33,8 @@ const BuyActionWindow = ({ uid }) => {
       );
 
       console.log("Order placed successfully:", response.data);
-
-      // ✅ Close buy window after success
-      GeneralContext.closeBuyWindow();
+      alert("✅ Order placed successfully!");
+      closeBuyWindow(); // ✅ Properly close the modal
     } catch (error) {
       console.error("❌ Error placing new order:", error);
       alert("Failed to place order. Please try again.");
@@ -42,7 +42,7 @@ const BuyActionWindow = ({ uid }) => {
   };
 
   const handleCancelClick = () => {
-    GeneralContext.closeBuyWindow();
+    closeBuyWindow();
   };
 
   return (
