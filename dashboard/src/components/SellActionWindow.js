@@ -7,48 +7,49 @@ const SellActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
 
-  // ✅ Access context value
+  // ✅ Access context safely
   const context = useContext(GeneralContext);
   const { closeSellWindow } = context || {};
 
-  // ✅ Use centralized API base
-  const API_BASE = process.env.REACT_APP_BACKEND_URL;
+  // ✅ Use centralized API URL (fallback for local dev)
+  const API_BASE = process.env.REACT_APP_BACKEND_URL || "http://localhost:3002";
 
   const handleSellClick = async () => {
     try {
-      if (!uid || typeof uid !== "string" || uid.length === 0) {
+      if (!uid || typeof uid !== "string" || uid.trim() === "") {
         alert("❌ Error: Stock symbol is missing. Cannot proceed with sale.");
         return;
       }
 
       const payload = {
-        name: uid,
+        name: uid.trim(),
         qty: parseFloat(stockQuantity),
         price: parseFloat(stockPrice),
       };
 
       console.log("🟡 Sending Sell Order Payload:", payload);
 
-      const queryString = `?name=${encodeURIComponent(
-        payload.name
-      )}&qty=${encodeURIComponent(payload.qty)}`;
-
-      // ✅ Backend API call using env URL
-      const response = await axios.delete(`${API_BASE}/sellOrder${queryString}`);
+      // ✅ API Call — Use DELETE with params + credentials
+      const response = await axios.delete(`${API_BASE}/sellOrder`, {
+        params: { name: payload.name, qty: payload.qty },
+        withCredentials: true,
+      });
 
       console.log("✅ Sell Order Response:", response.data);
-      alert("✅ Sell order successful!");
+      alert("✅ Sell order placed successfully!");
 
-      if (typeof closeSellWindow === "function") {
-        closeSellWindow();
-      } else {
-        console.warn("⚠️ closeSellWindow function not found in context");
-      }
+      // ✅ Close the sell window safely
+      if (typeof closeSellWindow === "function") closeSellWindow();
+      else console.warn("⚠️ closeSellWindow function not found in context");
     } catch (error) {
       console.error("❌ Error while selling:", error);
-      const errorMessage =
-        error.response?.data || "Something went wrong while processing the sell order!";
-      alert(`❌ Error: ${errorMessage}`);
+
+      const errMsg =
+        error.response?.data?.message ||
+        error.response?.data ||
+        "Something went wrong while processing the sell order!";
+
+      alert(`❌ Error: ${errMsg}`);
     }
   };
 

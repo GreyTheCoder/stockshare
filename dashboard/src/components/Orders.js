@@ -2,73 +2,82 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Orders = () => {
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const API_BASE = process.env.REACT_APP_BACKEND_URL;
+  // ✅ Use the same backend URL from environment (no trailing slash)
+  const API_BASE = process.env.REACT_APP_BACKEND_URL;
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      setLoading(true);
-      setError("");
+  useEffect(() => {
+    const fetchOrders = async () => {
+      setLoading(true);
+      setError("");
 
-      try {
-        const res = await axios.get(`${API_BASE}/allOrders`, { withCredentials: true });
-        setOrders(res.data || []);
-      } catch (err) {
-        console.error("❌ Failed to fetch orders:", err);
-        setError(
-          err.response?.data
-            ? JSON.stringify(err.response.data)
-            : "Failed to fetch orders"
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
+      try {
+        // ✅ Proper API structure + safe CORS config
+        const res = await axios.get(`${API_BASE}/allOrders`, {
+          withCredentials: false, // ❌ Set true only if using sessions
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-    fetchOrders();
-  }, [API_BASE]); // ⭐ FIX: API_BASE added to dependency array
+        console.log("✅ Orders fetched successfully:", res.data);
+        setOrders(res.data || []);
+      } catch (err) {
+        console.error("❌ Failed to fetch orders:", err);
+        setError(
+          err.response?.data
+            ? JSON.stringify(err.response.data)
+            : "Failed to fetch orders"
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  return (
-    <div className="orders-page">
-      <h2>Orders</h2>
+    fetchOrders();
+  }, [API_BASE]); // ⭐ dependency ensures re-fetch if env changes
 
-      {loading && <div>Loading orders...</div>}
+  return (
+    <div className="orders-page">
+      <h2>Orders</h2>
 
-      {error && <div style={{ color: "red" }}>Error: {error}</div>}
+      {loading && <div>Loading orders...</div>}
 
-      {!loading && !error && orders.length === 0 && <div>No orders found.</div>}
+      {error && <div style={{ color: "red" }}>Error: {error}</div>}
 
-      {!loading && !error && orders.length > 0 && (
-        <div style={{ overflowX: "auto", marginTop: 12 }}>
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
-            <thead>
-              <tr>
-                <th style={{ textAlign: "left", padding: 8, borderBottom: "1px solid #ddd" }}>Name</th>
-                <th style={{ textAlign: "right", padding: 8, borderBottom: "1px solid #ddd" }}>Qty</th>
-                <th style={{ textAlign: "right", padding: 8, borderBottom: "1px solid #ddd" }}>Avg</th>
-                <th style={{ textAlign: "right", padding: 8, borderBottom: "1px solid #ddd" }}>Price</th>
-                <th style={{ textAlign: "left", padding: 8, borderBottom: "1px solid #ddd" }}>Mode</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map((o) => (
-                <tr key={o._id}>
-                  <td style={{ padding: 8, borderBottom: "1px solid #f0f0f0" }}>{o.name}</td>
-                  <td style={{ padding: 8, textAlign: "right", borderBottom: "1px solid #f0f0f0" }}>{o.qty}</td>
-                  <td style={{ padding: 8, textAlign: "right", borderBottom: "1px solid #f0f0f0" }}>{o.avg}</td>
-                  <td style={{ padding: 8, textAlign: "right", borderBottom: "1px solid #f0f0f0" }}>{o.price}</td>
-                  <td style={{ padding: 8, borderBottom: "1px solid #f0f0f0" }}>{o.mode}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </div>
-  );
+      {!loading && !error && orders.length === 0 && <div>No orders found.</div>}
+
+      {!loading && !error && orders.length > 0 && (
+        <div style={{ overflowX: "auto", marginTop: 12 }}>
+          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+            <thead>
+              <tr>
+                <th style={{ textAlign: "left", padding: 8, borderBottom: "1px solid #ddd" }}>Name</th>
+                <th style={{ textAlign: "right", padding: 8, borderBottom: "1px solid #ddd" }}>Qty</th>
+                <th style={{ textAlign: "right", padding: 8, borderBottom: "1px solid #ddd" }}>Avg</th>
+                <th style={{ textAlign: "right", padding: 8, borderBottom: "1px solid #ddd" }}>Price</th>
+                <th style={{ textAlign: "left", padding: 8, borderBottom: "1px solid #ddd" }}>Mode</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((o) => (
+                <tr key={o._id}>
+                  <td style={{ padding: 8, borderBottom: "1px solid #f0f0f0" }}>{o.name}</td>
+                  <td style={{ padding: 8, textAlign: "right", borderBottom: "1px solid #f0f0f0" }}>{o.qty}</td>
+                  <td style={{ padding: 8, textAlign: "right", borderBottom: "1px solid #f0f0f0" }}>{o.avg}</td>
+                  <td style={{ padding: 8, textAlign: "right", borderBottom: "1px solid #f0f0f0" }}>{o.price}</td>
+                  <td style={{ padding: 8, borderBottom: "1px solid #f0f0f0" }}>{o.mode}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Orders;

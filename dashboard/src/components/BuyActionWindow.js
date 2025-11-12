@@ -8,11 +8,13 @@ const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
 
-  const API = process.env.REACT_APP_BACKEND_URL; // use single source
+  // ✅ Base URL from environment (no trailing slash)
+  const API = process.env.REACT_APP_BACKEND_URL;
 
   const handleBuyClick = async () => {
     try {
-      await axios.post(
+      // ✅ Correct API call structure
+      const response = await axios.post(
         `${API}/newOrder`,
         {
           name: uid,
@@ -21,14 +23,20 @@ const BuyActionWindow = ({ uid }) => {
           mode: "BUY",
         },
         {
-          withCredentials: true, // include only if backend uses cookies/session
+          // ✅ Use only if your backend uses sessions or cookies
+          withCredentials: false,
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
 
-      // Close buy window after success
+      console.log("Order placed successfully:", response.data);
+
+      // ✅ Close buy window after success
       GeneralContext.closeBuyWindow();
     } catch (error) {
-      console.error("Error placing new order:", error);
+      console.error("❌ Error placing new order:", error);
       alert("Failed to place order. Please try again.");
     }
   };
@@ -47,10 +55,12 @@ const BuyActionWindow = ({ uid }) => {
               type="number"
               name="qty"
               id="qty"
-              onChange={(e) => setStockQuantity(e.target.value)}
+              onChange={(e) => setStockQuantity(Number(e.target.value))}
               value={stockQuantity}
+              min="1"
             />
           </fieldset>
+
           <fieldset>
             <legend>Price</legend>
             <input
@@ -58,8 +68,9 @@ const BuyActionWindow = ({ uid }) => {
               name="price"
               id="price"
               step="0.05"
-              onChange={(e) => setStockPrice(e.target.value)}
+              onChange={(e) => setStockPrice(Number(e.target.value))}
               value={stockPrice}
+              min="0"
             />
           </fieldset>
         </div>

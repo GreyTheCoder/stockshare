@@ -2,87 +2,100 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Positions = () => {
-  const [allPositions, setAllPositions] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [allPositions, setAllPositions] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const API_BASE = process.env.REACT_APP_BACKEND_URL;
+  // ✅ Backend URL with fallback for local testing
+  const API_BASE = process.env.REACT_APP_BACKEND_URL || "http://localhost:3002";
 
-  useEffect(() => {
-    const fetchPositions = async () => {
-      setLoading(true);
-      setError("");
-      try {
-        // FIX: Add withCredentials for cookie transfer (Fixes Data Loading)
-        const res = await axios.get(`${API_BASE}/allPositions`, { withCredentials: true });
-        setAllPositions(res.data || []);
-      } catch (err) {
-        console.error("❌ Failed to fetch positions:", err);
-        setError(
-          err.response?.data
-            ? JSON.stringify(err.response.data)
-            : "Failed to fetch positions"
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
+  useEffect(() => {
+    const fetchPositions = async () => {
+      setLoading(true);
+      setError("");
 
-    fetchPositions();
-  }, [API_BASE]);
+      try {
+        // ✅ Fetch data from backend with credentials (for session/cookies)
+        const res = await axios.get(`${API_BASE}/allPositions`, {
+          withCredentials: true,
+        });
 
-  return (
-    <>
-      <h3 className="title">Positions ({allPositions.length})</h3>
+        // ✅ Safely set data (in case API returns null or undefined)
+        setAllPositions(res.data || []);
+      } catch (err) {
+        console.error("❌ Failed to fetch positions:", err);
 
-      {loading && <div>Loading positions...</div>}
-      {error && <div style={{ color: "red" }}>Error: {error}</div>}
-      {!loading && !error && allPositions.length === 0 && (
-        <div>No positions found.</div>
-      )}
+        // ✅ Show cleaner error message instead of raw JSON
+        setError(
+          err.response?.data?.message ||
+            "Failed to fetch positions. Please check your backend connection."
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      {!loading && !error && allPositions.length > 0 && (
-        <div className="order-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Instrument</th>
-                <th>Qty.</th>
-                <th>Avg.</th>
-                <th>LTP</th>
-                <th>P&amp;L</th>
-                <th>Chg.</th>
-              </tr>
-            </thead>
+    fetchPositions();
+  }, [API_BASE]);
 
-            <tbody>
-              {allPositions.map((stock, index) => {
-                const curValue = stock.price * stock.qty;
-                const isProfit = curValue - stock.avg * stock.qty >= 0.0;
-                const profClass = isProfit ? "profit" : "loss";
-                const dayClass = stock.isLoss ? "loss" : "profit";
+  return (
+    <>
+      <h3 className="title">Positions ({allPositions.length})</h3>
 
-                return (
-                  <tr key={index}>
-                    <td>{stock.product}</td>
-                    <td>{stock.name}</td>
-                    <td>{stock.qty}</td>
-                    <td>{stock.avg.toFixed(2)}</td>
-                    <td>{stock.price.toFixed(2)}</td>
-                    <td className={profClass}>
-                      {(curValue - stock.avg * stock.qty).toFixed(2)}
-                    </td>
-                    <td className={dayClass}>{stock.day}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </>
-  );
+      {/* ✅ Loading State */}
+      {loading && <div>Loading positions...</div>}
+
+      {/* ✅ Error State */}
+      {error && <div style={{ color: "red" }}>Error: {error}</div>}
+
+      {/* ✅ Empty State */}
+      {!loading && !error && allPositions.length === 0 && (
+        <div>No positions found.</div>
+      )}
+
+      {/* ✅ Table Render */}
+      {!loading && !error && allPositions.length > 0 && (
+        <div className="order-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Instrument</th>
+                <th>Qty.</th>
+                <th>Avg.</th>
+                <th>LTP</th>
+                <th>P&amp;L</th>
+                <th>Chg.</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {allPositions.map((stock, index) => {
+                const curValue = stock.price * stock.qty;
+                const isProfit = curValue - stock.avg * stock.qty >= 0.0;
+                const profClass = isProfit ? "profit" : "loss";
+                const dayClass = stock.isLoss ? "loss" : "profit";
+
+                return (
+                  <tr key={index}>
+                    <td>{stock.product}</td>
+                    <td>{stock.name}</td>
+                    <td>{stock.qty}</td>
+                    <td>{stock.avg.toFixed(2)}</td>
+                    <td>{stock.price.toFixed(2)}</td>
+                    <td className={profClass}>
+                      {(curValue - stock.avg * stock.qty).toFixed(2)}
+                    </td>
+                    <td className={dayClass}>{stock.day}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default Positions;

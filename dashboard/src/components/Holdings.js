@@ -9,12 +9,22 @@ const Holdings = () => {
   useEffect(() => {
     const API = process.env.REACT_APP_BACKEND_URL;
 
+    // ✅ Fetch holdings from backend
     axios
       .get(`${API}/allHoldings`, {
-        withCredentials: true, // optional, use only if backend has sessions
+        // ❗ Keep this false unless backend explicitly needs session cookies
+        withCredentials: false,
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .then((res) => setAllHoldings(res.data))
-      .catch((err) => console.error("Error fetching holdings:", err));
+      .then((res) => {
+        console.log("✅ Holdings fetched successfully:", res.data);
+        setAllHoldings(res.data);
+      })
+      .catch((err) => {
+        console.error("❌ Error fetching holdings:", err);
+      });
   }, []);
 
   const labels = allHoldings.map((item) => item.name);
@@ -51,7 +61,8 @@ const Holdings = () => {
           <tbody>
             {allHoldings.map((stock, index) => {
               const curValue = stock.price * stock.qty;
-              const isProfit = curValue - stock.avg * stock.qty >= 0.0;
+              const profitLoss = curValue - stock.avg * stock.qty;
+              const isProfit = profitLoss >= 0.0;
               const profClass = isProfit ? "profit" : "loss";
               const dayClass = stock.isLoss ? "loss" : "profit";
 
@@ -62,9 +73,7 @@ const Holdings = () => {
                   <td>{stock.avg.toFixed(2)}</td>
                   <td>{stock.price.toFixed(2)}</td>
                   <td>{curValue.toFixed(2)}</td>
-                  <td className={profClass}>
-                    {(curValue - stock.avg * stock.qty).toFixed(2)}
-                  </td>
+                  <td className={profClass}>{profitLoss.toFixed(2)}</td>
                   <td className={profClass}>{stock.net}</td>
                   <td className={dayClass}>{stock.day}</td>
                 </tr>
