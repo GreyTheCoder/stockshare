@@ -38,9 +38,6 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// ✅ Explicitly handle preflight requests (some hosts require this)
-app.options("*", cors(corsOptions));
-
 // ✅ Session Setup (Secure for Render)
 app.use(
   session({
