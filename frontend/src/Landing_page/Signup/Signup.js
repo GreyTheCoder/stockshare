@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-// Auth form: toggles between Login and Signup
 function Signup() {
   const [isLogin, setIsLogin] = useState(true);
   const [form, setForm] = useState({
@@ -9,19 +8,18 @@ function Signup() {
     password: "",
   });
 
-  // Update form fields
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Form submit: send login/signup API request
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-     const url = isLogin
-  ? "https://stockshare-backend.onrender.com/login"
-  : "https://stockshare-backend.onrender.com/signup";
+    // ✅ Use environment variables for flexibility
+    const BACKEND_URL = "https://stockshare-backend.onrender.com";
+    const DASHBOARD_URL = "https://stockshare-dashboard.netlify.app";
 
+    const url = isLogin ? `${BACKEND_URL}/login` : `${BACKEND_URL}/signup`;
 
     try {
       const requestBody = isLogin
@@ -43,18 +41,22 @@ function Signup() {
 
       if (data.message) alert(data.message);
 
+      // ✅ Redirect to dashboard on successful login/signup
       if (
         (isLogin && data.message === "Login successful!") ||
         (!isLogin && data.message === "Signup successful!")
       ) {
-        window.location.href = "http://localhost:3001";
+        // Optional: store username in localStorage
+        if (data.username) localStorage.setItem("username", data.username);
+
+        // ✅ Redirect here
+        window.location.href = DASHBOARD_URL;
       }
     } catch (err) {
       alert("Something went wrong!");
     }
   };
 
-  // UI: Auth card with conditional fields and toggle
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100 bg-light">
       <div
@@ -66,7 +68,6 @@ function Signup() {
         </h3>
 
         <form onSubmit={handleSubmit}>
-          {/* Username if in signup mode */}
           {!isLogin && (
             <div className="mb-3">
               <label className="form-label">Username</label>
@@ -82,7 +83,6 @@ function Signup() {
             </div>
           )}
 
-          {/* Email */}
           <div className="mb-3">
             <label className="form-label">Email address</label>
             <input
@@ -96,7 +96,6 @@ function Signup() {
             />
           </div>
 
-          {/* Password */}
           <div className="mb-3">
             <label className="form-label">Password</label>
             <input
@@ -115,7 +114,6 @@ function Signup() {
           </button>
         </form>
 
-        {/* Toggle login/signup modes */}
         <div className="text-center mt-3">
           {isLogin ? (
             <>
