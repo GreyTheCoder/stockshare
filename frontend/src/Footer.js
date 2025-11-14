@@ -16,202 +16,111 @@ function Footer() {
 
           <div className="col">
             <p>Account</p>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Minor demat account
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Open demat account
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               NRI demat account
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Commodity
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Dematerialisation
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Fund transfer
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               MTF
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Referral program
             </a>
           </div>
 
           <div className="col">
             <p>Support</p>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Contact us
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Support portal
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               How to file a complaint?
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Status of your complaints
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Bulletin
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Circular
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Z-Connect blog
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Downloads
             </a>
           </div>
 
           <div className="col">
             <p>Company</p>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               About
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Philosophy
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Press and media
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Careers
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Zerodha Cares (CSR)
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Zerodha.tech
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Open source
             </a>
           </div>
 
           <div className="col">
             <p>Quick links</p>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Upcoming IPOs
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Brokerage charges
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Market holidays
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Economic calendar
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Calculators
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Markets
             </a>
-            <a
-              href="#"
-              className="text-muted mb-3 d-block text-decoration-none"
-            >
+            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
               Sector
             </a>
           </div>
         </div>
 
-       
         <div className="mt-5 text-muted" style={{ fontSize: "14px" }}>
           <p>
             Zerodha Broking Ltd.: Member of NSE, BSE & MCX – SEBI Registration
@@ -226,19 +135,21 @@ function Footer() {
             ensure you carefully read the Risk Disclosure Document as prescribed
             by SEBI | ICF
           </p>
+
           <p>
             Procedure to file a complaint on SEBI SCORES: Register on SCORES
             portal. Mandatory details for filing complaints on SCORES: Name,
             PAN, Address, Mobile Number, E-mail ID. Benefits: Effective
             Communication, Speedy redressal of the grievances.
           </p>
-          <p>
-            Smart Online Dispute Resolution | Grievances Redressal Mechanism
-          </p>
+
+          <p>Smart Online Dispute Resolution | Grievances Redressal Mechanism</p>
+
           <p>
             Investments in securities market are subject to market risks; read
             all the related documents carefully before investing.
           </p>
+
           <p>
             Attention investors: 1) Stock brokers can accept securities as
             margins from clients only by way of pledge in the depository system
@@ -248,10 +159,12 @@ function Footer() {
             create pledge. 3) Check your securities / MF / bonds in the
             consolidated account statement issued by NSDL/CDSL every month.
           </p>
+
           <p>
             India's largest broker based on networth as per NSE. NSE broker
             factsheet.
           </p>
+
           <p>
             "Prevent unauthorised transactions in your account. Update your
             mobile numbers/email IDs with your stock brokers. Receive
@@ -270,10 +183,11 @@ function Footer() {
             claiming to be part of Zerodha and offering such services, please
             create a ticket here.
           </p>
+
           <div className="text-center d-flex justify-content-center list-unstyled flex-wrap">
             <li className="mx-3 mb-3">NSE</li>
-            <li className="mx-3  mb-3">BSE</li>
-            <li className="mx-3  mb-3">MSX</li>
+            <li className="mx-3 mb-3">BSE</li>
+            <li className="mx-3 mb-3">MSX</li>
             <li className="mx-3 mb-3">Terms & conditions</li>
             <li className="mx-3 mb-3">Policies & procedures</li>
             <li className="mx-3 mb-3">Privacy policy</li>
