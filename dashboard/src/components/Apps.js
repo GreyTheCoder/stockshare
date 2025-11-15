@@ -1,11 +1,5 @@
 import React from "react";
 
-/*
-  Simple Apps page: quick shortcut cards for features you can add later.
-  This version uses plain inline styles (no external CSS) and the "Open"
-  button is inert (clickable but does nothing) as requested.
-*/
-
 const Apps = () => {
   const cards = [
     { title: "Paper Trading", desc: "Simulate trades without real money", route: "/apps/paper" },
@@ -50,7 +44,6 @@ const Apps = () => {
             </div>
 
             <div style={{ marginTop: 12, display: "flex", justifyContent: "flex-end" }}>
-              {/* Inert button: clickable but performs no action */}
               <button
                 className="btn btn-sm"
                 onClick={() => {}}

@@ -12,7 +12,7 @@ import { GeneralContextProvider } from "./GeneralContext";
 
 const Dashboard = () => {
   return (
-    <GeneralContextProvider> {/* ✅ Move this outside */}
+    <GeneralContextProvider> 
       <div className="dashboard-container">
         <WatchList />
         <div className="content">

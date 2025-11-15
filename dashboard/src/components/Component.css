@@ -1,13 +1,13 @@
-/* 💠 Minimal font/spacing tweaks */
 
-/* 📦 Container */
+
+/*  Container */
 .watchlist-container {
   padding: 10px;
   background: transparent;
   box-sizing: border-box;
 }
 
-/* 🔍 Search */
+/*  Search */
 .search-container {
   display: flex;
   align-items: center;
@@ -28,7 +28,7 @@
   color: #6b7280;
 }
 
-/* 📜 List */
+/*  List */
 .list {
   list-style: none;
   padding: 0;
@@ -40,7 +40,7 @@
   overflow-y: auto;
 }
 
-/* 🔹 Item */
+/*  Item */
 .item {
   display: flex;
   justify-content: space-between;
@@ -49,7 +49,7 @@
   border-radius: 6px;
 }
 
-/* 🏷 Stock name */
+/*  Stock name */
 .item .up,
 .item .down {
   margin: 0;
@@ -92,23 +92,23 @@
   border-radius: 6px;
 }
 
-/* ⚙ icons */
+/* icons */
 .icon {
   font-size: 18px;
 }
 
-/* 🍩 Chart wrap */
+/*  Chart wrap */
 .watchlist-container > .chart {
   max-width: 180px;
   margin-top: 10px;
 }
 
 
-/* 🔹 summary.js */
+/*  summary.js */
 
-/* ✨ Minimal summary styles */
+/* Minimal summary styles */
 
-/* 👤 Username */
+/*  Username */
 .username {
   margin-bottom: 10px;
 }
@@ -119,7 +119,7 @@
   color: #34414a;             
 }
 
-/* ─ Divider */
+/* Divider */
 .divider {
   border: none;
   height: 1px;
@@ -127,7 +127,7 @@
   margin: 8px 0 12px 0;
 }
 
-/* 📦 Section */
+/*  Section */
 .section {
   margin-bottom: 14px;
   padding: 8px 0;
@@ -141,7 +141,7 @@
   font-weight: 600;
 }
 
-/* 🧩 Data */
+/*  Data */
 .data {
   display: flex;
   gap: 12px;
@@ -171,7 +171,7 @@
   color: #647380;
 }
 
-/* │ Divider in data */
+/* Divider in data */
 .data hr {
   width: 1px;
   height: 44px;
@@ -180,7 +180,7 @@
   margin: 0 8px;
 }
 
-/* ➡ Right col */
+/*  Right col */
 .data .second {
   display: flex;
   flex-direction: column;
@@ -201,7 +201,7 @@
   color: #0f1724;
 }
 
-/* 💹 Profit text */
+/*  Profit text */
 .profit {
   color: #134e4a;
   display: flex;
@@ -217,7 +217,7 @@
   font-weight: 600;
 }
 
-/* 📱 Responsive */
+/*  Responsive */
 @media (max-width: 480px) {
   .data {
     flex-direction: column;
@@ -232,9 +232,9 @@
 }
 
 
-/* 💼 Holdings.css */
+/*  Holdings.css */
 
-/* 🧾 Table layout, spacing, font tweaks */
+/* Table layout, spacing, font tweaks */
 
 .title {
   font-size: 1.15rem;
@@ -243,13 +243,13 @@
   margin: 18px 0;
 }
 
-/* 📋 Table container */
+/*  Table container */
 .order-table {
   width: 100%;
   overflow-x: auto;
 }
 
-/* 🧱 Table layout */
+/* Table layout */
 .order-table table {
   width: 100%;
   border-collapse: collapse;
@@ -257,7 +257,7 @@
   font-family: inherit;
 }
 
-/* 🧭 Header */
+/*  Header */
 .order-table thead th {
   text-align: left;
   padding: 18px 12px;
@@ -268,7 +268,7 @@
   vertical-align: middle;
 }
 
-/* 📏 Col widths */
+/*Col widths */
 .order-table thead th:nth-child(1) { width: 22%; }
 .order-table thead th:nth-child(2) { width: 8%; }
 .order-table thead th:nth-child(3) { width: 12%; }
@@ -278,7 +278,7 @@
 .order-table thead th:nth-child(7) { width: 8%; }
 .order-table thead th:nth-child(8) { width: 8%; }
 
-/* 🧾 Body cells */
+/*  Body cells */
 .order-table tbody td {
   padding: 16px 12px;
   vertical-align: middle;
@@ -290,7 +290,7 @@
   text-overflow: ellipsis;
 }
 
-/* 🔤 First col (name) */
+/*  First col (name) */
 .order-table tbody td:first-child {
   text-align: left;
   font-weight: 700;
@@ -299,14 +299,14 @@
   color: #222;
 }
 
-/* 🔢 Numeric cols */
+/*  Numeric cols */
 .order-table tbody td:nth-child(n+2) {
   text-align: right;
   font-weight: 600;
   color: #333;
 }
 
-/* 🟢🔴 P&L */
+/* P&L */
 .order-table td.profit {
   color: #16a34a;
 }
@@ -314,7 +314,7 @@
   color: #ef4444;
 }
 
-/* 🔠 Small muted text */
+/*  Small muted text */
 .small-muted {
   display: block;
   font-size: 0.78rem;
@@ -323,17 +323,17 @@
   margin-top: 6px;
 }
 
-/* ✨ Hover */
+/*  Hover */
 .order-table tbody tr:hover td {
   background: rgba(245, 246, 247, 0.6);
 }
 
-/* 🚫 Focus outline */
+/*  Focus outline */
 .order-table table:focus {
   outline: none;
 }
 
-/* 📱 Responsive */
+/*  Responsive */
 @media (max-width: 900px) {
   .order-table thead th,
   .order-table tbody td {
@@ -346,9 +346,9 @@
 }
 
 
-/* 💰 funds.js */
+/* funds.js */
 
-/* 🪙 Minimal tweaks for funds panel */
+/*  Minimal tweaks for funds panel */
 
 .funds {
   display: flex;
@@ -365,14 +365,14 @@
   font-weight: 400;
 }
 
-/* 🔘 Buttons */
+/*  Buttons */
 .funds .btn {
   padding: 8px 14px;
   font-size: 0.88rem;
   border-radius: 6px;
 }
 
-/* 🧩 Row/cols */
+/*  Row/cols */
 .row {
   margin-top: 18px;
   gap: 18px;
@@ -380,7 +380,7 @@
   align-items: flex-start;
 }
 
-/* 📑 Table card */
+/*  Table card */
 .table {
   border: 1px solid #e6e9ec;
   padding: 12px;
@@ -391,7 +391,7 @@
   box-sizing: border-box;
 }
 
-/* 📊 Data rows */
+/*  Data rows */
 .table .data {
   display: flex;
   align-items: center;
@@ -420,7 +420,7 @@
   margin: 8px 0;
 }
 
-/* 🪙 Commodity card */
+/*  Commodity card */
 .commodity {
   padding: 12px;
   border-radius: 8px;
@@ -435,7 +435,7 @@
   color: #5f6f77;
 }
 
-/* 📱 Responsive */
+/*  Responsive */
 @media (max-width: 860px) {
   .row {
     flex-direction: column;

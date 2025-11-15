@@ -15,7 +15,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ Use environment variables for flexibility
+   
     const BACKEND_URL = "https://stockshare-backend.onrender.com";
     const DASHBOARD_URL = "https://stockshare-dashboard.netlify.app";
 
@@ -41,15 +41,15 @@ function Signup() {
 
       if (data.message) alert(data.message);
 
-      // ✅ Redirect to dashboard on successful login/signup
+      
       if (
         (isLogin && data.message === "Login successful!") ||
         (!isLogin && data.message === "Signup successful!")
       ) {
-        // Optional: store username in localStorage
+        
         if (data.username) localStorage.setItem("username", data.username);
 
-        // ✅ Redirect here
+        
         window.location.href = DASHBOARD_URL;
       }
     } catch (err) {

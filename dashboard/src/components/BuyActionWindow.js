@@ -8,10 +8,10 @@ const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
 
-  // ✅ Access context function properly
+
   const { closeBuyWindow } = useContext(GeneralContext);
 
-  // ✅ Base URL from environment (no trailing slash)
+
   const API = process.env.REACT_APP_BACKEND_URL;
 
   const handleBuyClick = async () => {
@@ -33,10 +33,10 @@ const BuyActionWindow = ({ uid }) => {
       );
 
       console.log("Order placed successfully:", response.data);
-      alert("✅ Order placed successfully!");
-      closeBuyWindow(); // ✅ Properly close the modal
+      alert(" Order placed successfully!");
+      closeBuyWindow(); 
     } catch (error) {
-      console.error("❌ Error placing new order:", error);
+      console.error(" Error placing new order:", error);
       alert("Failed to place order. Please try again.");
     }
   };

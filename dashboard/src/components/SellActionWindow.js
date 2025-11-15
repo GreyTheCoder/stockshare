@@ -7,17 +7,17 @@ const SellActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
 
-  // ✅ Access context safely
+
   const context = useContext(GeneralContext);
   const { closeSellWindow } = context || {};
 
-  // ✅ Use centralized API URL (fallback for local dev)
+ 
   const API_BASE = process.env.REACT_APP_BACKEND_URL || "http://localhost:3002";
 
   const handleSellClick = async () => {
     try {
       if (!uid || typeof uid !== "string" || uid.trim() === "") {
-        alert("❌ Error: Stock symbol is missing. Cannot proceed with sale.");
+        alert(" Error: Stock symbol is missing. Cannot proceed with sale.");
         return;
       }
 
@@ -27,29 +27,29 @@ const SellActionWindow = ({ uid }) => {
         price: parseFloat(stockPrice),
       };
 
-      console.log("🟡 Sending Sell Order Payload:", payload);
+      console.log(" Sending Sell Order Payload:", payload);
 
-      // ✅ API Call — Use DELETE with params + credentials
+     
       const response = await axios.delete(`${API_BASE}/sellOrder`, {
         params: { name: payload.name, qty: payload.qty },
         withCredentials: true,
       });
 
-      console.log("✅ Sell Order Response:", response.data);
-      alert("✅ Sell order placed successfully!");
+      console.log(" Sell Order Response:", response.data);
+      alert(" Sell order placed successfully!");
 
-      // ✅ Close the sell window safely
+      
       if (typeof closeSellWindow === "function") closeSellWindow();
-      else console.warn("⚠️ closeSellWindow function not found in context");
+      else console.warn(" closeSellWindow function not found in context");
     } catch (error) {
-      console.error("❌ Error while selling:", error);
+      console.error(" Error while selling:", error);
 
       const errMsg =
         error.response?.data?.message ||
         error.response?.data ||
         "Something went wrong while processing the sell order!";
 
-      alert(`❌ Error: ${errMsg}`);
+      alert(` Error: ${errMsg}`);
     }
   };
 

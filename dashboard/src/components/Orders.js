@@ -6,7 +6,7 @@ const Orders = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // ✅ Use the same backend URL from environment (no trailing slash)
+ 
   const API_BASE = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
@@ -15,18 +15,18 @@ const Orders = () => {
       setError("");
 
       try {
-        // ✅ Proper API structure + safe CORS config
+        
         const res = await axios.get(`${API_BASE}/allOrders`, {
-          withCredentials: false, // ❌ Set true only if using sessions
+          withCredentials: false, 
           headers: {
             "Content-Type": "application/json",
           },
         });
 
-        console.log("✅ Orders fetched successfully:", res.data);
+        console.log(" Orders fetched successfully:", res.data);
         setOrders(res.data || []);
       } catch (err) {
-        console.error("❌ Failed to fetch orders:", err);
+        console.error("Failed to fetch orders:", err);
         setError(
           err.response?.data
             ? JSON.stringify(err.response.data)
@@ -38,7 +38,7 @@ const Orders = () => {
     };
 
     fetchOrders();
-  }, [API_BASE]); // ⭐ dependency ensures re-fetch if env changes
+  }, [API_BASE]); 
 
   return (
     <div className="orders-page">

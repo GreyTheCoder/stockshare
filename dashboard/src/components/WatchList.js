@@ -12,7 +12,7 @@ import { DoughnutChart } from "./DoughNutChart";
 import "./Component.css";
 
 const WatchList = () => {
-  // ✅ Build labels and chart data inside the component
+  //  Build labels and chart data inside the component
   const labels = watchlist.map((stock) => stock.name);
 
   const data = {
@@ -61,7 +61,7 @@ const WatchList = () => {
         ))}
       </ul>
 
-      {/* ✅ Render Doughnut Chart */}
+      {/*  Render Doughnut Chart */}
       <DoughnutChart data={data} />
     </div>
   );
@@ -69,7 +69,7 @@ const WatchList = () => {
 
 export default WatchList;
 
-// ✅ Watchlist item component
+// Watchlist item component
 const WatchlistItem = ({ stock }) => {
   const [showWatchListActions, setShowWatchListActions] = useState(false);
 
@@ -95,7 +95,7 @@ const WatchlistItem = ({ stock }) => {
   );
 };
 
-// ✅ WatchListActions (context-safe)
+//  WatchListActions (context-safe)
 const WatchListActions = ({ uid }) => {
   const { openBuyWindow, openSellWindow } = useContext(GeneralContext);
 

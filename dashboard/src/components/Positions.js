@@ -6,7 +6,7 @@ const Positions = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // ✅ Backend URL with fallback for local testing
+ 
   const API_BASE = process.env.REACT_APP_BACKEND_URL || "http://localhost:3002";
 
   useEffect(() => {
@@ -15,17 +15,17 @@ const Positions = () => {
       setError("");
 
       try {
-        // ✅ Fetch data from backend with credentials (for session/cookies)
+        
         const res = await axios.get(`${API_BASE}/allPositions`, {
           withCredentials: true,
         });
 
-        // ✅ Safely set data (in case API returns null or undefined)
+        
         setAllPositions(res.data || []);
       } catch (err) {
         console.error("❌ Failed to fetch positions:", err);
 
-        // ✅ Show cleaner error message instead of raw JSON
+        
         setError(
           err.response?.data?.message ||
             "Failed to fetch positions. Please check your backend connection."
@@ -42,18 +42,18 @@ const Positions = () => {
     <>
       <h3 className="title">Positions ({allPositions.length})</h3>
 
-      {/* ✅ Loading State */}
+      {/* Loading State */}
       {loading && <div>Loading positions...</div>}
 
-      {/* ✅ Error State */}
+      {/* Error State */}
       {error && <div style={{ color: "red" }}>Error: {error}</div>}
 
-      {/* ✅ Empty State */}
+      {/* Empty State */}
       {!loading && !error && allPositions.length === 0 && (
         <div>No positions found.</div>
       )}
 
-      {/* ✅ Table Render */}
+      {/* Table Render */}
       {!loading && !error && allPositions.length > 0 && (
         <div className="order-table">
           <table>

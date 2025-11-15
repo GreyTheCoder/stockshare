@@ -15,17 +15,16 @@ const { UserModel } = require("./models/UserModel");
 
 const app = express();
 
-// ✅ Trust proxy for Render (important for cookies and CORS)
 app.set("trust proxy", 1);
 
 const PORT = process.env.PORT || 3002;
 const MONGO_URI = process.env.MONGO_URL;
 
-// --- Middleware ---
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// ✅ CORS Configuration (final)
+
 const corsOptions = {
   origin: [
     "https://stockshare-frontend.netlify.app",   
@@ -46,32 +45,30 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-// ✅ Session Setup (Secure for Render)
 app.use(
   session({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
-    proxy: true, // 👈 Needed for trust proxy setup
+    proxy: true, 
     cookie: {
       expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
       maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: "none", // ✅ Required for cross-site cookies
-      secure: true, // ✅ Required for HTTPS (Render is HTTPS)
+      sameSite: "none", 
+      secure: true, 
     },
   })
 );
 
-// ✅ Passport Setup
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy({ usernameField: "email" }, UserModel.authenticate()));
 passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
 
-// --- Routes ---
-// ✅ Fetch Holdings
+
 app.get("/allHoldings", async (req, res) => {
   try {
     const allHoldings = await HoldingsModel.find({});
@@ -81,7 +78,6 @@ app.get("/allHoldings", async (req, res) => {
   }
 });
 
-// ✅ Fetch Positions
 app.get("/allPositions", async (req, res) => {
   try {
     const allPositions = await PositionsModel.find({});
@@ -91,7 +87,7 @@ app.get("/allPositions", async (req, res) => {
   }
 });
 
-// ✅ Fetch Orders
+
 app.get("/allOrders", async (req, res) => {
   try {
     const allOrders = await OrdersModel.find({}).sort({ _id: -1 });
@@ -101,7 +97,6 @@ app.get("/allOrders", async (req, res) => {
   }
 });
 
-// ✅ New Buy Order
 app.post("/newOrder", async (req, res) => {
   const { name, qty, price, mode } = req.body;
   const buyQuantity = parseFloat(qty);
@@ -141,7 +136,7 @@ app.post("/newOrder", async (req, res) => {
   }
 });
 
-// ✅ Sell Order
+
 app.delete("/sellOrder", async (req, res) => {
   try {
     const { name, qty } = req.query;
@@ -174,7 +169,7 @@ app.delete("/sellOrder", async (req, res) => {
   }
 });
 
-// ✅ Signup
+
 app.post("/signup", async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -189,7 +184,7 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-// ✅ Login
+
 app.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) return res.status(500).json({ message: "Internal Server Error" });
@@ -203,7 +198,7 @@ app.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-// --- Connect DB then Start Server ---
+
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {

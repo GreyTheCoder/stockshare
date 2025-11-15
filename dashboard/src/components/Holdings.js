@@ -9,21 +9,20 @@ const Holdings = () => {
   useEffect(() => {
     const API = process.env.REACT_APP_BACKEND_URL;
 
-    // ✅ Fetch holdings from backend
+   
     axios
       .get(`${API}/allHoldings`, {
-        // ❗ Keep this false unless backend explicitly needs session cookies
         withCredentials: false,
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        console.log("✅ Holdings fetched successfully:", res.data);
+        console.log(" Holdings fetched successfully:", res.data);
         setAllHoldings(res.data);
       })
       .catch((err) => {
-        console.error("❌ Error fetching holdings:", err);
+        console.error("Error fetching holdings:", err);
       });
   }, []);
 

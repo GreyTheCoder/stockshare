@@ -22,7 +22,7 @@ export const GeneralContextProvider = (props) => {
   const handleOpenBuyWindow = (uid) => {
     setIsBuyWindowOpen(true);
     setSelectedStockUID(uid);
-    setIsSellWindowOpen(false); // close sell window if open
+    setIsSellWindowOpen(false); // close sell window
   };
 
   const handleCloseBuyWindow = () => {
@@ -34,7 +34,7 @@ export const GeneralContextProvider = (props) => {
   const handleOpenSellWindow = (uid) => {
     setIsSellWindowOpen(true);
     setSelectedStockUID(uid);
-    setIsBuyWindowOpen(false); // close buy window if open
+    setIsBuyWindowOpen(false); // close buy window 
   };
 
   const handleCloseSellWindow = () => {
