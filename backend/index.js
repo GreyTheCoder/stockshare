@@ -28,15 +28,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // ✅ CORS Configuration (final)
 const corsOptions = {
   origin: [
-    "https://stockshare-dashboard.netlify.app", // ✅ Netlify live dashboard
-    "http://localhost:3000", // ✅ Local development
+    "https://stockshare-frontend.netlify.app",   
+    "https://stockshare-dashboard.netlify.app",  
+    "http://localhost:3000"                     
   ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-  allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"],
-  credentials: true, // ✅ Important for cookies/sessions
+  allowedHeaders: [
+    "Origin",
+    "X-Requested-With",
+    "Content-Type",
+    "Accept",
+    "Authorization"
+  ],
+  credentials: true,
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
+
 
 // ✅ Session Setup (Secure for Render)
 app.use(
