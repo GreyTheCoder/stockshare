@@ -17,7 +17,7 @@ function Awards() {
         <div className="col-6 p-5 mt-5">
           <h1 className=" fs-2">Largest stock Broker in India</h1>
           <p className="mb-5">
-            2+ million Zerodha clients contribute to over 15% of all retail
+            2+ million Credit Europe Bank clients contribute to over 15% of all retail
             order volume in India daily by trading and investing in:
           </p>
 

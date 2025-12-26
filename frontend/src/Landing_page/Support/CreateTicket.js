@@ -6,7 +6,6 @@ function CreateTicket() {
       <div className="row p-5 mt-5 mb-5">
         <h1 className="fs-2 mb-4">To create a Ticket, select a relevant topic</h1>
 
-        
         <div className="col-4 p-5 mt-2 mb-2">
           <h4>
             <i className="fa fa-plus me-2" aria-hidden="true"></i> Account Opening
@@ -15,14 +14,13 @@ function CreateTicket() {
           <a href="#" className="d-block mt-2 mb-2 text-decoration-none" style={{ lineHeight: "2.5" }}>Offline Account Opening</a>
           <a href="#" className="d-block mt-2 mb-2 text-decoration-none" style={{ lineHeight: "2.5" }}>Company, Partnership and HUF Account</a>
           <a href="#" className="d-block mt-2 mb-2 text-decoration-none" style={{ lineHeight: "2.5" }}>NRI Account Opening</a>
-          <a href="#" className="d-block mt-2 mb-2 text-decoration-none" style={{ lineHeight: "2.5" }}>Charges at Zerodha</a>
-          <a href="#" className="d-block mt-2 mb-2 text-decoration-none" style={{ lineHeight: "2.5" }}>Zerodha IDFC FIRST Bank 3-in-1 Account</a>
+          <a href="#" className="d-block mt-2 mb-2 text-decoration-none" style={{ lineHeight: "2.5" }}>Charges at Credit Europe Bank</a>
+          <a href="#" className="d-block mt-2 mb-2 text-decoration-none" style={{ lineHeight: "2.5" }}>Credit Europe Bank IDFC FIRST Bank 3-in-1 Account</a>
         </div>
 
-        
         <div className="col-4 p-5 mt-2 mb-2">
           <h4>
-            <i className="fa fa-plus me-2" aria-hidden="true"></i> Your Zerodha Account
+            <i className="fa fa-plus me-2" aria-hidden="true"></i> Your Credit Europe Bank Account
           </h4>
           <a href="#" className="d-block mt-2 mb-2 text-decoration-none" style={{ lineHeight: "2.5" }}>Login credentials</a>
           <a href="#" className="d-block mt-2 mb-2 text-decoration-none" style={{ lineHeight: "2.5" }}>Profile changes</a>
@@ -32,7 +30,6 @@ function CreateTicket() {
           <a href="#" className="d-block mt-2 mb-2 text-decoration-none" style={{ lineHeight: "2.5" }}>Account closure</a>
         </div>
 
-        
         <div className="col-4 p-5 mt-2 mb-2">
           <h4>
             <i className="fa fa-plus me-2" aria-hidden="true"></i> Trading & Markets
@@ -44,7 +41,6 @@ function CreateTicket() {
           <a href="#" className="d-block mt-2 mb-2 text-decoration-none" style={{ lineHeight: "2.5" }}>Corporate actions</a>
         </div>
 
-        
         <div className="col-4 p-5 mt-2 mb-2">
           <h4>
             <i className="fa fa-plus me-2" aria-hidden="true"></i> Funds
@@ -56,7 +52,6 @@ function CreateTicket() {
           <a href="#" className="d-block mt-2 mb-2 text-decoration-none" style={{ lineHeight: "2.5" }}>Bank verification issues</a>
         </div>
 
-        
         <div className="col-4 p-5 mt-2 mb-2">
           <h4>
             <i className="fa fa-plus me-2" aria-hidden="true"></i> Console (Reports)
@@ -68,7 +63,6 @@ function CreateTicket() {
           <a href="#" className="d-block mt-2 mb-2 text-decoration-none" style={{ lineHeight: "2.5" }}>Dividend tracking</a>
         </div>
 
-       
         <div className="col-4 p-5 mt-2 mb-2">
           <h4>
             <i className="fa fa-plus me-2" aria-hidden="true"></i> Kite (App & Platform)

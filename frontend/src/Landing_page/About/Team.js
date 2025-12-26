@@ -12,26 +12,42 @@ function Team() {
       >
         <div className="col-6 p-3">
           <img
-            src="media/images/nithinKamath.jpg"
-            alt="nithin kamath"
+            src="media/images/marc.jpg"
+            alt="Marc van der Berg"
             style={{ borderRadius: "100%", width: "50%" }}
           />
-          <h4 className="mt-3">Nithin Kamath</h4>
+          <h4 className="mt-3">Marc van der Berg</h4>
+
           <h6>Founder & CEO</h6>
         </div>
         <div className="col-6 p-3 fs-6 text-start fw-semibold">
           <p>
-            Nithin bootstrapped and founded Zerodha in 2010 to overcome the
-            hurdles he faced during his decade long stint as a trader. Today,
-            Zerodha has changed the landscape of the Indian broking industry.
+            Marc bootstrapped and founded Credit Europe Bank in 2010 to simplify
+            the complexities he encountered during his career in European
+            capital markets. Today, Credit Europe Bank has redefined digital
+            banking and investment standards across the continent.
           </p>
           <p>
             {" "}
-            He is a member of the SEBI Secondary Market Advisory Committee
-            (SMAC) and the Market Data Advisory Committee (MDAC).
+            He serves as a senior advisor to several European financial
+            regulatory bodies and is a frequent speaker at global fintech
+            summits.
           </p>
-          <p>Playing basketball is his zen.</p>
-          <p>Connect on  <a href="" style={{textDecoration:"None"}}>Homepage </a> /  <a href="" style={{textDecoration:"None"}}>TradingQnA</a> /  <a href="" style={{textDecoration:"None"}}>Twitter</a></p>{" "}
+          <p>Cycling through the Alps is his zen.</p>
+          <p>
+            Connect on{" "}
+            <a href="" style={{ textDecoration: "None" }}>
+              Homepage{" "}
+            </a>{" "}
+            /{" "}
+            <a href="" style={{ textDecoration: "None" }}>
+              TradingQnA
+            </a>{" "}
+            /{" "}
+            <a href="" style={{ textDecoration: "None" }}>
+              Twitter
+            </a>
+          </p>{" "}
         </div>
       </div>
     </div>

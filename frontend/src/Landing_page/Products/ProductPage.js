@@ -21,7 +21,7 @@ function PricingPage() {
       <RightSection
         imageURL="media/images/console.png"
         productName="Console"
-        productDesription="The central dashboard for your Zerodha account. Gain insights into your trades and investments with in-depth reports and visualisations."
+        productDesription="The central dashboard for your Credit Europe Bank account. Gain insights into your trades and investments with in-depth reports and visualisations."
         learnMore=""
       />
       <LeftSection
@@ -49,7 +49,11 @@ function PricingPage() {
         appStore=""
       />
       <p className="text-center mt-5 mb-5 fs-5">
-        Want to know more about our technology stack? Check out the <a href="" style={{textDecoration:"none",color:"#387ed1"}}> Zerodha.tech </a>
+        Want to know more about our technology stack? Check out the{" "}
+        <a href="" style={{ textDecoration: "none", color: "#387ed1" }}>
+          {" "}
+          Credit Europe Bank.tech{" "}
+        </a>
         blog.
       </p>
       <Universe />

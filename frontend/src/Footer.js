@@ -7,115 +7,208 @@ function Footer() {
         <div className="row mt-5">
           <div className="col">
             <img
-              src="media/images/logo.svg"
+              src="media/images/logo.png"
               alt="Logo"
               style={{ width: "50%" }}
             />
-            <p>&copy; 2010 - 2025, Zerodha Broking Ltd. All rights reserved.</p>
+            <p>
+              &copy; 2010 - 2025, Credit Europe Bank Broking Ltd. All rights
+              reserved.
+            </p>
           </div>
 
           <div className="col">
             <p>Account</p>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Minor demat account
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Open demat account
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               NRI demat account
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Commodity
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Dematerialisation
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Fund transfer
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               MTF
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Referral program
             </a>
           </div>
 
           <div className="col">
             <p>Support</p>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Contact us
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Support portal
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               How to file a complaint?
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Status of your complaints
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Bulletin
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Circular
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Z-Connect blog
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Downloads
             </a>
           </div>
 
           <div className="col">
             <p>Company</p>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               About
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Philosophy
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Press and media
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Careers
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
-              Zerodha Cares (CSR)
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
+              Credit Europe Bank Cares (CSR)
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
-              Zerodha.tech
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
+              Credit Europe Bank.tech
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Open source
             </a>
           </div>
 
           <div className="col">
             <p>Quick links</p>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Upcoming IPOs
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Brokerage charges
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Market holidays
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Economic calendar
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Calculators
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Markets
             </a>
-            <a href="javascript:void(0)" className="text-muted mb-3 d-block text-decoration-none">
+            <a
+              href="javascript:void(0)"
+              className="text-muted mb-3 d-block text-decoration-none"
+            >
               Sector
             </a>
           </div>
@@ -123,17 +216,17 @@ function Footer() {
 
         <div className="mt-5 text-muted" style={{ fontSize: "14px" }}>
           <p>
-            Zerodha Broking Ltd.: Member of NSE, BSE & MCX – SEBI Registration
-            no.: INZ000031633 CDSL/NSDL: Depository services through Zerodha
-            Broking Ltd. – SEBI Registration no.: IN-DP-431-2019 Commodity
-            Trading through Zerodha Commodities Pvt. Ltd. MCX: 46025; SEBI
-            Registration no.: INZ000038238 Registered Address: Zerodha Broking
-            Ltd., #153/154, 4th Cross, Dollars Colony, Opp. Clarence Public
-            School, J.P Nagar 4th Phase, Bengaluru - 560078, Karnataka, India.
-            For any complaints pertaining to securities broking please write to
-            complaints@zerodha.com, for DP related to dp@zerodha.com. Please
-            ensure you carefully read the Risk Disclosure Document as prescribed
-            by SEBI | ICF
+            Credit Europe Bank Broking Ltd.: Member of NSE, BSE & MCX – SEBI
+            Registration no.: INZ000031633 CDSL/NSDL: Depository services
+            through Credit Europe Bank Broking Ltd. – SEBI Registration no.:
+            IN-DP-431-2019 Commodity Trading through Credit Europe Bank Commodities Pvt.
+            Ltd. MCX: 46025; SEBI Registration no.: INZ000038238 Registered
+            Address: Credit Europe Bank Broking Ltd., #153/154, 4th Cross, Dollars Colony,
+            Opp. Clarence Public School, J.P Nagar 4th Phase, Bengaluru -
+            560078, Karnataka, India. For any complaints pertaining to
+            securities broking please write to complaints@crediteuropebank.com, for DP
+            related to dp@crediteuropebank.com. Please ensure you carefully read the Risk
+            Disclosure Document as prescribed by SEBI | ICF
           </p>
 
           <p>
@@ -143,7 +236,9 @@ function Footer() {
             Communication, Speedy redressal of the grievances.
           </p>
 
-          <p>Smart Online Dispute Resolution | Grievances Redressal Mechanism</p>
+          <p>
+            Smart Online Dispute Resolution | Grievances Redressal Mechanism
+          </p>
 
           <p>
             Investments in securities market are subject to market risks; read
@@ -180,7 +275,7 @@ function Footer() {
             of allotment. In case of non allotment the funds will remain in your
             bank account. As a business we don't give stock tips, and have not
             authorized anyone to trade on behalf of others. If you find anyone
-            claiming to be part of Zerodha and offering such services, please
+            claiming to be part of Credit Europe Bank and offering such services, please
             create a ticket here.
           </p>
 

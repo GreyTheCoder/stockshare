@@ -1,13 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg border-bottom" style={{ backgroundColor: "#fff" }}>
+    <nav
+      className="navbar navbar-expand-lg border-bottom"
+      style={{ backgroundColor: "#fff" }}
+    >
       <div className="container p-2">
         <Link className="navbar-brand" to="/">
-          <img src="/media/images/logo.svg" alt="logo" style={{ width: "25%" }} />
+          <img
+            src="/media/images/logo.png"
+            alt="logo"
+            style={{ height: "38px", width: "auto", display: "block" }}
+          />
         </Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -24,19 +32,29 @@ function Navbar() {
           <form className="d-flex" role="search">
             <ul className="navbar-nav mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link" to="/signup">Signup</Link>
+                <Link className="nav-link" to="/signup">
+                  Signup
+                </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/about">About</Link>
+                <Link className="nav-link" to="/about">
+                  About
+                </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/product">Product</Link>
+                <Link className="nav-link" to="/product">
+                  Product
+                </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/pricing">Pricing</Link>
+                <Link className="nav-link" to="/pricing">
+                  Pricing
+                </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/support">Support</Link>
+                <Link className="nav-link" to="/support">
+                  Support
+                </Link>
               </li>
             </ul>
           </form>
