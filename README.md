@@ -1,4 +1,5 @@
 # StockShare — Full‑Stack Trading Dashboard
+https://github.com/user-attachments/assets/da1c2cc4-4fd2-4238-92fc-3a867ed0a7c9
 
 
 
@@ -90,11 +91,7 @@ Tech stack summary
 
 Key features
 
-- Local user authentication and session pers
-
-https://github.com/user-attachments/assets/da1c2cc4-4fd2-4238-92fc-3a867ed0a7c9
-
-istence
+- Local user authentication and session persistence
 
 - Create/read/update order flows and holdings tracking
 
